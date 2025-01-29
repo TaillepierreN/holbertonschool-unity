@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public Text scoreText;
     public Text healthText;
     public Text winLoseText;
-    public  Image winLoseImage;
+    public Image winLoseImage;
     public int health = 5;
 
     [SerializeField] private float speed = 5.0f;
@@ -26,16 +26,21 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+#if UNITY_ANDROID || UNITY_IOS
+        horizontalInput += Input.acceleration.x;
+        verticalInput += Input.acceleration.y;
+#endif
+
         rb.linearVelocity = new Vector3(horizontalInput * speed, rb.linearVelocity.y, verticalInput * speed);
     }
 
     void Update()
     {
         if (health == 0)
-            {
-                //Debug.Log("Game Over!");
-                SetEndScreen(false);
-            }
+        {
+            //Debug.Log("Game Over!");
+            SetEndScreen(false);
+        }
         if (Input.GetKey("escape"))
             SceneManager.LoadScene("menu");
     }
@@ -63,7 +68,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
     #region UI
-        
+
     private void SetScoreText()
     {
         scoreText.text = $"Score: {score}";
@@ -82,7 +87,8 @@ public class PlayerController : MonoBehaviour
             winLoseText.color = Color.black;
             winLoseImage.color = Color.green;
             winLoseImage.gameObject.SetActive(true);
-        } else
+        }
+        else
         {
             winLoseText.text = "Game Over!";
             winLoseText.color = Color.white;
@@ -95,7 +101,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Methods
-        
+
     IEnumerator LoadScene(float seconds)
     {
         yield return new WaitForSeconds(seconds);
