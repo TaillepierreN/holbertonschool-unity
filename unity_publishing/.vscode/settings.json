@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "holbertonschool-0x03-unity-ui.sln"
+    "dotnet.defaultSolution": "unity_publishing.sln"
 }
