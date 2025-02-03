@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Transform _groundCheck;
+    [SerializeField] private Transform _respawnPoint;
     [SerializeField] private float _groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask _groundLayer;
     private float _moveX;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GetInputs();
+        CheckIfFallen();
     }
 
     private void FixedUpdate()
@@ -66,4 +68,12 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawWireSphere(_groundCheck.position, _groundCheckRadius);
         }
     }*/
+
+    private void CheckIfFallen()
+    {
+        if (transform.position.y < -15)
+        {
+            transform.position = _respawnPoint.position;
+        }
+    }
 }
