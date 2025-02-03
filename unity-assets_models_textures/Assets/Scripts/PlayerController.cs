@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GetInputs();
-        CheckIfFallen();
+        RespawnIfFallen();
     }
 
     private void FixedUpdate()
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         }
     }*/
 
-    private void CheckIfFallen()
+    private void RespawnIfFallen()
     {
         if (transform.position.y < -15)
         {
