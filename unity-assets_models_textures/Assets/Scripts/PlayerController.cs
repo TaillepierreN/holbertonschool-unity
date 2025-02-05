@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _respawnPoint;
     [SerializeField] private float _groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private TrailRenderer _trailRenderer;
     private float _moveX;
     private float _moveZ;
     private bool _isGrounded;
@@ -24,6 +25,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundLayer);
+        if (_isGrounded && _trailRenderer.emitting == true)
+        {
+            _trailRenderer.emitting = false;
+        }
 
         HandleMovement();
         HandleJump();
@@ -56,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_jumpPressed)
         {
+            _trailRenderer.emitting = true;
             _rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
             _jumpPressed = false;
         }
