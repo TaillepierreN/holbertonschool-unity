@@ -5,12 +5,6 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private Canvas pauseCanvas;
-    private SharedInfo _sharedInfo;
-
-    private void Start() {
-        GameObject sharedInfoGO = GameObject.Find("SharedInfo");
-        if (sharedInfoGO) sharedInfoGO.TryGetComponent<SharedInfo>(out _sharedInfo);
-    }
 
     void Update()
     {
@@ -55,7 +49,7 @@ public class PauseMenu : MonoBehaviour
     public void Options()
     {
         Pause(false);
-        if (_sharedInfo) _sharedInfo.SetPreviousScene(SceneManager.GetActiveScene().name);
+        SharedInfo.Instance.SetPreviousScene(SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("Options");
     }
 }
