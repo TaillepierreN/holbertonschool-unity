@@ -1938,7 +1938,7 @@ GameObject:
   - component: {fileID: 8506386087187582723}
   - component: {fileID: 7885678686922101178}
   m_Layer: 5
-  m_Name: BGMText
+  m_Name: SFXText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
