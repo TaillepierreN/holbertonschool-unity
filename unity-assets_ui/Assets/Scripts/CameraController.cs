@@ -7,11 +7,14 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 3f;
     private Vector3 _offset;
     private float _yaw;
+    private float _pitch;
 
     private void Start()
     {
         _offset = Player.transform.position - this.transform.position;
         _yaw = transform.eulerAngles.y;
+        float rawPitch = transform.eulerAngles.x;
+        _pitch = (rawPitch > 180) ? rawPitch - 360 : rawPitch;
     }
 
     // Update is called once per frame
@@ -26,21 +29,23 @@ public class CameraController : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             float mouseX = Input.GetAxis("Mouse X") * _rotationSpeed;
+            float mouseY = Input.GetAxis("Mouse Y") * _rotationSpeed;
             _yaw += mouseX;
+            _pitch -= mouseY;
+            _pitch = Mathf.Clamp(_pitch, -15f, 60f);
 
-            Quaternion cameraRotation = Quaternion.Euler(0f, _yaw, 0f);
+            Quaternion cameraRotation = Quaternion.Euler(_pitch, _yaw, 0f);
             Vector3 rotatedOffset = cameraRotation * _offset;
 
             transform.position = Player.transform.position - rotatedOffset;
             transform.LookAt(Player.transform.position);
         }
-
     }
     private void FollowPlayer()
     {
         if (!Input.GetMouseButton(1))
         {
-            transform.position = Player.transform.position - Quaternion.Euler(0f, _yaw, 0f) * _offset;
+            transform.position = Player.transform.position - Quaternion.Euler(_pitch, _yaw, 0f) * _offset;
             transform.LookAt(Player.transform.position);
         }
     }
