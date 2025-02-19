@@ -21,7 +21,7 @@ public class SharedInfo : MonoBehaviour
         }
     }
 
-    public string PreviousScene { get; private set; } = "";
+    public string PreviousScene { get; private set; } = "MainMenu";
     public bool InvertY { get; set; } = false;
 
     private void Awake()
@@ -39,5 +39,10 @@ public class SharedInfo : MonoBehaviour
     public void SetPreviousScene(string scene)
     {
         PreviousScene = scene;
+    }
+
+    public void SetInvertY(bool invert)
+    {
+        InvertY = invert;
     }
 }
