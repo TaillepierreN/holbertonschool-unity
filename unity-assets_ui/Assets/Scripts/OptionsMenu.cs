@@ -6,7 +6,8 @@ public class OptionsMenu : MonoBehaviour
     private SharedInfo _sharedInfo;
     void Start()
     {
-        _sharedInfo = GameObject.Find("SharedInfo").GetComponent<SharedInfo>();
+        GameObject sharedInfoGO = GameObject.Find("SharedInfo");
+        if (sharedInfoGO) sharedInfoGO.TryGetComponent<SharedInfo>(out _sharedInfo);
     }
     public void Back()
     {
