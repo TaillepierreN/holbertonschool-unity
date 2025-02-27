@@ -9,10 +9,15 @@ public class TetrisBlock : MonoBehaviour
     private int ScorePerLines = 100;
 
     private float _previousTime;
-    [SerializeField] private float _fallTime = .8f;
+    [SerializeField] private float _fallTime = .85f;
     private static Transform[,] _grid = new Transform[GridWidth, GridHeight];
     public static Transform[,] Grid { get => _grid; }
     public event Action OnBlockLanded;
+
+    void Start()
+    {
+        _fallTime = .8f - (GameManager.Instance.Level * .05f);
+    }
 
     /// <summary>
     /// Handle inputs in update

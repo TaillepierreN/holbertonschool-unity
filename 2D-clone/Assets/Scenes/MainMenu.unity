@@ -237,8 +237,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -69.7}
-  m_SizeDelta: {x: 0, y: 500}
+  m_AnchoredPosition: {x: 2.3650513, y: -69.70001}
+  m_SizeDelta: {x: 13.270052, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &88306620
 MonoBehaviour:
@@ -858,7 +858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -147.13}
+  m_AnchoredPosition: {x: 0, y: -49}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &810360492
@@ -1260,7 +1260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -147.13}
+  m_AnchoredPosition: {x: 0, y: -49}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1144455065
@@ -1487,7 +1487,9 @@ MonoBehaviour:
   SFXSource: {fileID: 1044372586}
   _bgmClips:
   - {fileID: 8300000, guid: 667ec89861a843f43b7240c653e201ab, type: 3}
+  - {fileID: 8300000, guid: 3dfeb88ba5c1b1e4daa5775200b20922, type: 3}
   - {fileID: 8300000, guid: ef510e1e5564dfb4a9d4bd8ca553532d, type: 3}
+  - {fileID: 8300000, guid: 2fa86f3ed5a4ea2439b5e140ccbdc658, type: 3}
   _sfxClips:
   - {fileID: 8300000, guid: f33dabaf0c683c64a8259c8499cc0522, type: 3}
   - {fileID: 8300000, guid: 66ea8f4d388ed294ab941e145f5761f5, type: 3}
@@ -1529,8 +1531,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 47}
-  m_SizeDelta: {x: 0, y: 500}
+  m_AnchoredPosition: {x: 0, y: -76.7}
+  m_SizeDelta: {x: 2, y: 295.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1489420856
 MonoBehaviour:

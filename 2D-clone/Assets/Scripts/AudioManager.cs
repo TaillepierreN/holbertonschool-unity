@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -14,20 +15,28 @@ public class AudioManager : MonoBehaviour
         GameManager.Instance.OnMenuSelected += PlayBGMMenu;
         GameManager.Instance.OnRotation += PlaySFXRotation;
         GameManager.Instance.OnPlace += PlaySFXPlace;
+        GameManager.Instance.OnLevelUp += CheckLevel;
+    }
+
+    void OnDestroy()
+    {
+        GameManager.Instance.OnGameStarted -= PlayBGMGame;
+        GameManager.Instance.OnMenuSelected -= PlayBGMMenu;
+        GameManager.Instance.OnRotation -= PlaySFXRotation;
+        GameManager.Instance.OnPlace -= PlaySFXPlace;
+        GameManager.Instance.OnLevelUp -= CheckLevel;
     }
     void Update()
     {
-        
+
     }
     private void PlayBGMGame()
     {
-        BGMSource.clip = _bgmClips[1];
-        BGMSource.Play();
+        SwitchMusic(1);
     }
     private void PlayBGMMenu()
     {
-        BGMSource.clip = _bgmClips[0];
-        BGMSource.Play();
+        SwitchMusic(0);
     }
     private void PlaySFXRotation()
     {
@@ -38,5 +47,33 @@ public class AudioManager : MonoBehaviour
     {
         SFXSource.clip = _sfxClips[1];
         SFXSource.Play();
+    }
+    private void CheckLevel(int level)
+    {
+        if (level > 5)
+        {
+            if (BGMSource.clip != _bgmClips[3])
+            {
+                SwitchMusic(3);
+            }
+            return;
+        }
+        else if (level > 2)
+        {
+            if (BGMSource.clip != _bgmClips[2])
+            {   
+                SwitchMusic(2);
+            }
+            return;
+        }
+    }
+
+    private void SwitchMusic(int track)
+    {
+        BGMSource.loop = false;
+        BGMSource.Stop();
+        BGMSource.clip = _bgmClips[track];
+        BGMSource.Play();
+        BGMSource.loop = true;
     }
 }

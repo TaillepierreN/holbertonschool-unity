@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int Score = 0;
     public int LineDone = 0;
     public int Level = 01;
+    private int previousLineDone = 0;
     public event Action<int> OnLevelUp;
     public event Action<int, int> OnScoreUpdated;
     public event Action OnGameStarted;
@@ -60,18 +61,28 @@ public class GameManager : MonoBehaviour
 
     private void CheckLevelUp()
     {
-        if (LineDone % 10 == 0)
+        for (int threshold = ((previousLineDone / 10) + 1) * 10; threshold <= LineDone; threshold += 10)
         {
             Level++;
+            Debug.Log("Level: " + Level);
             OnLevelUp?.Invoke(Level);
         }
+        previousLineDone = LineDone;
     }
     public void TriggerGameStarted()
     {
         GameStarted = true;
         OnGameStarted?.Invoke();
+        ResetGame();
     }
-
+    private void ResetGame()
+    {
+        Score = 0;
+        LineDone = 0;
+        Level = 1;
+        OnScoreUpdated?.Invoke(Score, LineDone);
+        OnLevelUp?.Invoke(Level);
+    }
     public void TriggerGotToMenu()
     {
         OnMenuSelected?.Invoke();
