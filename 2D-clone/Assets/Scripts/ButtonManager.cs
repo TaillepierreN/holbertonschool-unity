@@ -20,6 +20,7 @@ public class ButtonManager : MonoBehaviour
     public void LoadTitle()
     {
         GameManager.Instance.UpdateLastSceneIndex();
+        GameManager.Instance.TriggerGotToMenu();
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -31,6 +32,6 @@ public class ButtonManager : MonoBehaviour
 
     public void BackToLastScene()
     {
-        SceneManager.LoadScene(GameManager.Instance.lastSceneIndex);
+        SceneManager.LoadScene(GameManager.Instance.LastSceneIndex);
     }
 }

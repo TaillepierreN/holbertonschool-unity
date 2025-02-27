@@ -1,11 +1,22 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 
-    public int lastSceneIndex = 0;
+    public int LastSceneIndex = 0;
+    public bool GameStarted = false;
     private static GameManager _instance;
+    public int Score = 0;
+    public int LineDone = 0;
+    public int Level = 01;
+    public event Action<int> OnLevelUp;
+    public event Action<int, int> OnScoreUpdated;
+    public event Action OnGameStarted;
+    public event Action OnMenuSelected;
+    public event Action OnRotation;
+    public event Action OnPlace;
     public static GameManager Instance
     {
         get
@@ -36,6 +47,42 @@ public class GameManager : MonoBehaviour
     }
     public void UpdateLastSceneIndex()
     {
-        lastSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        LastSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    public void UpdateScore(int scoreGained, int lineDone)
+    {
+        Score += scoreGained;
+        LineDone += lineDone;
+        OnScoreUpdated?.Invoke(Score, LineDone);
+        CheckLevelUp();
+    }
+
+    private void CheckLevelUp()
+    {
+        if (LineDone % 10 == 0)
+        {
+            Level++;
+            OnLevelUp?.Invoke(Level);
+        }
+    }
+    public void TriggerGameStarted()
+    {
+        GameStarted = true;
+        OnGameStarted?.Invoke();
+    }
+
+    public void TriggerGotToMenu()
+    {
+        OnMenuSelected?.Invoke();
+    }
+
+    public void TriggerOnRotation()
+    {
+        OnRotation?.Invoke();
+    }
+    public void TriggerOnPlace()
+    {
+        OnPlace?.Invoke();
     }
 }
