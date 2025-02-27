@@ -7,7 +7,7 @@ public class SpawnTetromino : MonoBehaviour
 
     void Start()
     {
-        NewTetromino();
+
     }
 
     public void NewTetromino()
@@ -19,5 +19,9 @@ public class SpawnTetromino : MonoBehaviour
         GameObject instantiatedMinos = Instantiate(prefab, transform.position, Quaternion.identity);
         _currentActiveTetromino = instantiatedMinos.GetComponent<TetrisBlock>();
         _currentActiveTetromino.OnBlockLanded += NewTetromino;
+    }
+    public void StartGame()
+    {
+        NewTetromino();
     }
 }
