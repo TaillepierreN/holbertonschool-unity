@@ -1,14 +1,20 @@
+using System;
 using UnityEngine;
 
 public class TetrisBlock : MonoBehaviour
 {
+    public Vector3 RotationPoint;
     public static int GridWidth = 10;
     public static int GridHeight = 20;
 
     private float _previousTime;
     [SerializeField] private float _fallTime = .8f;
+    private static Transform[,] _grid = new Transform[GridWidth, GridHeight];
+    public event Action OnBlockLanded;
 
-    // Update is called once per frame
+    /// <summary>
+    /// Handle inputs in update
+    /// </summary>
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -21,6 +27,11 @@ public class TetrisBlock : MonoBehaviour
             transform.position += new Vector3(1, 0, 0);
             CheckValidMove(1);
         }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            transform.RotateAround(transform.TransformPoint(RotationPoint), new Vector3(0, 0, 1), 90);
+            CheckValidMove(3);
+        }
 
         if (Time.time - _previousTime > (Input.GetKey(KeyCode.DownArrow) ? _fallTime / 10 : _fallTime))
         {
@@ -30,10 +41,11 @@ public class TetrisBlock : MonoBehaviour
         }
     }
 
-/// <summary>
-/// Check if the move is valid
-/// </summary>
-/// <param name="typeOfMove">0=left, 1=right, 2=down</param>
+    /// <summary>
+    /// Check if the move is valid and if not, prevent move
+    /// if down is not valid, add the block to the grid,disable the script and call a new block
+    /// </summary>
+    /// <param name="typeOfMove">0=left, 1=right, 2=down, 3=rotate</param>
     private void CheckValidMove(int typeOfMove)
     {
         if (!ValidMove())
@@ -48,6 +60,13 @@ public class TetrisBlock : MonoBehaviour
                     break;
                 case 2:
                     transform.position -= new Vector3(0, -1, 0);
+                    AddToGrid();
+                    CheckForLines();
+                    this.enabled = false;
+                    OnBlockLanded?.Invoke();
+                    break;
+                case 3:
+                    transform.RotateAround(transform.TransformPoint(RotationPoint), new Vector3(0, 0, 1), -90);
                     break;
                 default:
                     break;
@@ -62,11 +81,90 @@ public class TetrisBlock : MonoBehaviour
             int roundedX = Mathf.RoundToInt(children.transform.position.x);
             int roundedY = Mathf.RoundToInt(children.transform.position.y);
 
-            if( roundedX < 0 || roundedX >= GridWidth || roundedY < 0 || roundedY >= GridHeight)
-            {
+            if (roundedX < 0 || roundedX >= GridWidth || roundedY < 0 || roundedY >= GridHeight)
                 return false;
-            }
+
+            if (_grid[roundedX, roundedY] != null)
+                return false;
         }
         return true;
+    }
+
+    /// <summary>
+    /// Add the block position to the grid
+    /// </summary>
+    private void AddToGrid()
+    {
+        foreach (Transform children in transform)
+        {
+            int roundedX = Mathf.RoundToInt(children.transform.position.x);
+            int roundedY = Mathf.RoundToInt(children.transform.position.y);
+
+            _grid[roundedX, roundedY] = children;
+        }
+    }
+
+    /// <summary>
+    /// Checks for complete lines in the grid and removes them.
+    /// </summary>
+    private void CheckForLines()
+    {
+        for (int i = GridHeight - 1; i >= 0; i--)
+        {
+            if (HasLine(i))
+            {
+                DeleteLine(i);
+                RowDown(i);
+            }
+        }
+    }
+
+        /// <summary>
+        /// Checks if a row has a complete line.
+        /// </summary>
+        /// <param name="i">The row index to check.</param>
+        /// <returns>True if row has a complete line, false otherwise.</returns>
+    private bool HasLine(int i)
+    {
+        for (int j = 0; j < GridWidth; j++)
+        {
+            if (_grid[j, i] == null)
+                return false;
+        }
+        return true;
+    }
+
+        /// <summary>
+        /// Deletes a specific line from the grid.
+        /// </summary>
+        /// <param name="i">The row index to delete.</param>
+    private void DeleteLine(int i)
+    {
+        ParticlesLine.Instance.StartParticule(i);
+        for (int j = 0; j < GridWidth; j++)
+        {
+            Destroy(_grid[j, i].gameObject);
+            _grid[j, i] = null;
+        }
+    }
+
+        /// <summary>
+        /// Moves all rows above the specified row down by one.
+        /// </summary>
+        /// <param name="i">The row index to start moving down from.</param>
+    private void RowDown(int i)
+    {
+        for (int y = i; y < GridHeight; y++)
+        {
+            for (int j = 0; j < GridWidth; j++)
+            {
+                if (_grid[j, y] != null)
+                {
+                    _grid[j, y - 1] = _grid[j, y];
+                    _grid[j, y] = null;
+                    _grid[j, y - 1].transform.position -= new Vector3(0, 1, 0);
+                }
+            }
+        }
     }
 }
