@@ -8659,6 +8659,11 @@ MonoBehaviour:
   _linesNbr: {fileID: 1160987817}
   _levelNbr: {fileID: 1463211679}
   _timerText: {fileID: 330933360}
+  _HighscoreText: {fileID: 1788771603}
+  _colors:
+  - {r: 0.13333334, g: 0.1284738, b: 0, a: 1}
+  - {r: 0.13333334, g: 0, b: 0.0011522929, a: 1}
+  _colorBG: {fileID: 2141714014}
   Time: 0
 --- !u!1 &1329605954
 GameObject:

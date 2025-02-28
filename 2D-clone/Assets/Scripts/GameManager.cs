@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
 
     public int LastSceneIndex = 0;
     public bool GameStarted = false;
+    public Datasave datasave;
     private static GameManager _instance;
+    public int Highscore = 0;
     public int Score = 0;
     public int LineDone = 0;
     public int Level = 01;
@@ -37,6 +39,8 @@ public class GameManager : MonoBehaviour
 
         _instance = this;
         DontDestroyOnLoad(gameObject);
+        datasave = new Datasave();
+        datasave.LoadData();
     }
     public void UpdateLastSceneIndex()
     {
@@ -56,7 +60,6 @@ public class GameManager : MonoBehaviour
         for (int threshold = ((previousLineDone / 10) + 1) * 10; threshold <= LineDone; threshold += 10)
         {
             Level++;
-            Debug.Log("Level: " + Level);
             OnLevelUp?.Invoke(Level);
         }
         previousLineDone = LineDone;
@@ -92,6 +95,18 @@ public class GameManager : MonoBehaviour
 
     public void TriggerOnGameOver()
     {
+        UpdateHighscore();
         OnGameOver?.Invoke();
+    }
+
+    public void UpdateHighscore()
+    {
+        datasave.SetHighscore(Score);
+    }
+
+    public int LoadHighscore()
+    {
+        Highscore = datasave.Highscore;
+        return Highscore;
     }
 }
