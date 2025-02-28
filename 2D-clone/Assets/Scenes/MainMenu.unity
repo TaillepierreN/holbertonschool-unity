@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90235b0cf919f014cbdafc60df64ef03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
 --- !u!1 &383528058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,6 +1494,7 @@ MonoBehaviour:
   _sfxClips:
   - {fileID: 8300000, guid: f33dabaf0c683c64a8259c8499cc0522, type: 3}
   - {fileID: 8300000, guid: 66ea8f4d388ed294ab941e145f5761f5, type: 3}
+  - {fileID: 8300000, guid: 1bd8d64a2d9d77c409bba809babc4a22, type: 3}
 --- !u!1 &1489420854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,6 +2159,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LastSceneIndex: 0
   GameStarted: 0
+  datasave:
+    Highscore: 0
+  Highscore: 0
   Score: 0
   LineDone: 0
   Level: 1

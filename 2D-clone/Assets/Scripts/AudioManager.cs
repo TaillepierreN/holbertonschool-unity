@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
         GameManager.Instance.OnRotation += PlaySFXRotation;
         GameManager.Instance.OnPlace += PlaySFXPlace;
         GameManager.Instance.OnLevelUp += CheckLevel;
+        GameManager.Instance.OnScoreUpdated += PlaySFXLine;
     }
 
     void OnDestroy()
@@ -25,6 +26,7 @@ public class AudioManager : MonoBehaviour
         GameManager.Instance.OnRotation -= PlaySFXRotation;
         GameManager.Instance.OnPlace -= PlaySFXPlace;
         GameManager.Instance.OnLevelUp -= CheckLevel;
+        GameManager.Instance.OnScoreUpdated -= PlaySFXLine;
     }
     private void Awake()
     {
@@ -47,13 +49,17 @@ public class AudioManager : MonoBehaviour
     }
     private void PlaySFXRotation()
     {
-        SFXSource.clip = _sfxClips[0];
-        SFXSource.Play();
+        SwitchSFX(0);
     }
+
     private void PlaySFXPlace()
     {
-        SFXSource.clip = _sfxClips[1];
-        SFXSource.Play();
+        if(!SFXSource.isPlaying)
+            SwitchSFX(1);
+    }
+    private void PlaySFXLine(int score, int line)
+    {
+        SwitchSFX(2);
     }
     private void CheckLevel(int level)
     {
@@ -75,6 +81,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void SwitchSFX(int sfx)
+    {
+        SFXSource.clip = _sfxClips[sfx];
+        SFXSource.Play();
+    }
     private void SwitchMusic(int track)
     {
         BGMSource.loop = false;

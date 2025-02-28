@@ -54,13 +54,9 @@ public class InterfaceManager : MonoBehaviour
     private void UpdateLevel(int level)
     {
         _levelNbr.text = level.ToString("D2");
-        if( level >= 4 && _colorBG.color != _colors[1])
-        {
-            _colorBG.color = _colors[1];
-        } else if (level >= 2 && _colorBG.color != _colors[0])
-        {
-            _colorBG.color = _colors[0];
-        }
+        if (level > 1 && level < 11)
+            _colorBG.color = _colors[level - 2];
+
     }
 
     private void GameStarted()
