@@ -18,20 +18,12 @@ public class GameManager : MonoBehaviour
     public event Action OnMenuSelected;
     public event Action OnRotation;
     public event Action OnPlace;
+    public event Action OnGameOver;
+
     public static GameManager Instance
     {
         get
         {
-            if (_instance == null)
-            {
-                _instance = FindFirstObjectByType<GameManager>();
-                if (_instance == null)
-                {
-                    GameObject obj = new GameObject("GameManager");
-                    _instance = obj.AddComponent<GameManager>();
-                    DontDestroyOnLoad(obj);
-                }
-            }
             return _instance;
         }
     }
@@ -85,6 +77,7 @@ public class GameManager : MonoBehaviour
     }
     public void TriggerGotToMenu()
     {
+        GameStarted = false;
         OnMenuSelected?.Invoke();
     }
 
@@ -95,5 +88,10 @@ public class GameManager : MonoBehaviour
     public void TriggerOnPlace()
     {
         OnPlace?.Invoke();
+    }
+
+    public void TriggerOnGameOver()
+    {
+        OnGameOver?.Invoke();
     }
 }

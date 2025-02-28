@@ -8,7 +8,7 @@ public class InterfaceManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _levelNbr;
     [SerializeField] private TextMeshProUGUI _timerText;
     private bool _gameStarted = false;
-    private float _time = 0f;
+    public float Time = 0f;
 
     void Start()
     {
@@ -26,7 +26,7 @@ public class InterfaceManager : MonoBehaviour
     void Update()
     {
         if (_gameStarted)
-            _time += Time.deltaTime;
+            Time += UnityEngine.Time.deltaTime;
     }
     void LateUpdate()
     {
@@ -35,8 +35,8 @@ public class InterfaceManager : MonoBehaviour
     }
     private void UpdateTimerDisplay()
     {
-        int minutes = Mathf.FloorToInt(_time / 60f);
-        float seconds = _time % 60f;
+        int minutes = Mathf.FloorToInt(Time / 60f);
+        float seconds = Time % 60f;
 
         _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }

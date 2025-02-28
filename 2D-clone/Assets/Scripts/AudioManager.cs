@@ -7,10 +7,10 @@ public class AudioManager : MonoBehaviour
     public AudioSource SFXSource;
     [SerializeField] private AudioClip[] _bgmClips;
     [SerializeField] private AudioClip[] _sfxClips;
+    public static AudioManager Instance;
 
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
         GameManager.Instance.OnGameStarted += PlayBGMGame;
         GameManager.Instance.OnMenuSelected += PlayBGMMenu;
         GameManager.Instance.OnRotation += PlaySFXRotation;
@@ -26,9 +26,16 @@ public class AudioManager : MonoBehaviour
         GameManager.Instance.OnPlace -= PlaySFXPlace;
         GameManager.Instance.OnLevelUp -= CheckLevel;
     }
-    void Update()
+    private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     private void PlayBGMGame()
     {
@@ -61,7 +68,7 @@ public class AudioManager : MonoBehaviour
         else if (level > 2)
         {
             if (BGMSource.clip != _bgmClips[2])
-            {   
+            {
                 SwitchMusic(2);
             }
             return;

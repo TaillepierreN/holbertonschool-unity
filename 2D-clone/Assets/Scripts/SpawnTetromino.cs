@@ -21,9 +21,8 @@ public class SpawnTetromino : MonoBehaviour
 
         if (!CheckSpawnValid(instantiatedMinos))
         {
-            //GameManager.Instance.TriggerGameOver();
+            GameManager.Instance.TriggerOnGameOver();
             Destroy(instantiatedMinos);
-            Debug.Log("Game Over");
             return;
         }
 

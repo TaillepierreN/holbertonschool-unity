@@ -10,6 +10,7 @@ public class Starter : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         LaunchGame();
     }
 

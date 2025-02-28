@@ -73,8 +73,7 @@ public class TetrisBlock : MonoBehaviour
                     transform.position -= new Vector3(0, -1, 0);
                     if (transform.position.y >= GridHeight - 2)
                 {
-                    Debug.Log("game over from the bock");
-                    //GameManager.Instance.TriggerGameOver();
+                    GameManager.Instance.TriggerOnGameOver();
                     return false;
                 }
                     AddToGrid();
