@@ -1,8 +1,16 @@
-create a clone of a 2d game.
+## Tetris clone game
 
-https://www.looperman.com/loops/detail/242261/tetris-type-melody-free-140bpm-trap-synth-loop
-https://www.dafont.com/press-start-2p.font
-SFX from Pixabay freesound_community u_2fbuaev0zn Lesiakower
+Based on [Valem's tutorial](https://www.youtube.com/watch?v=T5P8ohdxDjo)<br>
+Font [press start 2p](https://www.dafont.com/press-start-2p.font)<br>
 
-OC-ReMix-_2948_-Tetris-_GB_-_Crimea-River_-_A-Type-_Korobeiniki__-by-Sir_NutS-_128kbit_AAC_
-Tetris-OC-ReMix-by-Schtiffles_-_T-Spin_-_A-Type-_Korobeiniki__-__4112_-_128kbit_AAC_
+### SFX
+from Pixabay by <br>
+[freesound_community](https://pixabay.com/users/freesound_community-46691455/)<br>
+[u_2fbuaev0zn](https://pixabay.com/users/u_2fbuaev0zn-30247713/)<br>
+[Lesiakower](https://pixabay.com/users/lesiakower-25701529/)<br>
+
+### Music
+[Tetris Type Melody by BbyTokyo](https://www.looperman.com/loops/detail/242261/tetris-type-melody-free-140bpm-trap-synth-loop)<br>
+[Original Tetris theme (korobeiniki)](https://www.youtube.com/watch?v=NmCCQxVBfyM)<br>
+[Crimea River by Sir_NutS](https://www.youtube.com/watch?v=Y0qpgLWhje8)<br>
+[T-Spin by Schtiffles](https://www.youtube.com/watch?v=uXtohha4kEI)<br>
