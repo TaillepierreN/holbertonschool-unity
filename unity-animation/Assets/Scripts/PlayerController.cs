@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public float MoveSpeed = 10f;
     public float JumpForce = 5f;
+    public float RotationSpeed = 10f;
 
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Transform _groundCheck;
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private TrailRenderer _trailRenderer;
+    
     private float _moveX;
     private float _moveZ;
     private bool _isGrounded;
@@ -50,9 +52,10 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = new Vector3(_moveX, 0f, _moveZ).normalized;
         if (moveDirection.magnitude >= 0.1f)
         {
-            Vector3 move = transform.right * _moveX + transform.forward * _moveZ;
-            Vector3 newPosition = move * MoveSpeed * Time.fixedDeltaTime;
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSpeed * Time.fixedDeltaTime);
 
+            Vector3 newPosition = transform.forward * MoveSpeed * Time.fixedDeltaTime;
             _rb.MovePosition(_rb.position + newPosition);
         }
     }

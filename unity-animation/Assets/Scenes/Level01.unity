@@ -12415,7 +12415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 588251097620617683, guid: b4463cde4fdb67a4abe89eb1e54c33ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.25
+      value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 588251097620617683, guid: b4463cde4fdb67a4abe89eb1e54c33ed, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12468,6 +12468,14 @@ PrefabInstance:
     - target: {fileID: 3862660546158504459, guid: b4463cde4fdb67a4abe89eb1e54c33ed, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322146505281403176, guid: b4463cde4fdb67a4abe89eb1e54c33ed, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2075170d2cc99ed49baf646a5ba48730, type: 2}
+    - target: {fileID: 6322146505281403176, guid: b4463cde4fdb67a4abe89eb1e54c33ed, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9163138606384223011, guid: b4463cde4fdb67a4abe89eb1e54c33ed, type: 3}
       propertyPath: _respawnPoint
