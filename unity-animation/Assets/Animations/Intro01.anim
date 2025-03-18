@@ -406,4 +406,11 @@ AnimationClip:
     flags: 0
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 6.016667
+    functionName: EnableStartGame
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: ef8c15b25bf8cd645820c4924a210e0b, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
