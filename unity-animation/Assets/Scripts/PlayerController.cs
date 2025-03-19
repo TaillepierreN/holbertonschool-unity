@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] private Animator _animator;
-    
+
     private float _moveX;
     private float _moveZ;
     private bool _isGrounded;
     private bool _jumpPressed;
+    private bool _isFalling = false;
+    private bool _isStanding = true;
 
     void Update()
     {
@@ -28,18 +30,21 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundLayer);
-        if(_isGrounded && _animator.GetBool("isFalling") == true)
+        if (_isGrounded && _isFalling == true)
         {
             _animator.SetBool("isFalling", false);
+            _isStanding = false;
         }
         if (_isGrounded && _trailRenderer.emitting == true)
         {
             _trailRenderer.emitting = false;
             _animator.SetBool("isJumping", false);
         }
-
-        HandleMovement();
-        HandleJump();
+        if (!_isFalling && _isStanding)
+        {
+            HandleMovement();
+            HandleJump();
+        }
     }
 
     private void GetInputs()
@@ -94,8 +99,14 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y < -15)
         {
+            _isFalling = true;
             _animator.SetBool("isFalling", true);
             transform.position = _respawnPoint.position;
         }
+    }
+    public void StandBackUp()
+    {
+        _isFalling = false;
+        _isStanding = true;
     }
 }
