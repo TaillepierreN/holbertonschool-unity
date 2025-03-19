@@ -15,7 +15,6 @@ public class ImpactBehavior : StateMachineBehaviour
     }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("player controller script is " + _playerController);
         _playerController.StandBackUp();
     }
 }
