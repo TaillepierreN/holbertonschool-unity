@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         if (_isGrounded && _trailRenderer.emitting == true)
         {
             _trailRenderer.emitting = false;
+            _animator.SetBool("isJumping", false);
         }
 
         HandleMovement();
@@ -73,16 +74,17 @@ public class PlayerController : MonoBehaviour
             _trailRenderer.emitting = true;
             _rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
             _jumpPressed = false;
+            _animator.SetBool("isJumping", true);
         }
     }
-    /*private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         if (_groundCheck != null)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(_groundCheck.position, _groundCheckRadius);
         }
-    }*/
+    }
 
     private void RespawnIfFallen()
     {

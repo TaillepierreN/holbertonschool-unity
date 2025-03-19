@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 9163138606384223011}
   - component: {fileID: 1321102126354384245}
   - component: {fileID: 3406282117611546232}
-  - component: {fileID: 6824399469380898586}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -38,6 +37,7 @@ Transform:
   m_Children:
   - {fileID: 8822702131271277697}
   - {fileID: 98210666136707922}
+  - {fileID: 8719863665185717674}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5979507167097156528
@@ -138,7 +138,7 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _trailRenderer: {fileID: 6824399469380898586}
+  _trailRenderer: {fileID: 1894888308886172579}
   _animator: {fileID: 6322146505281403176}
 --- !u!54 &1321102126354384245
 Rigidbody:
@@ -183,14 +183,46 @@ MonoBehaviour:
   _timerPanel: {fileID: 0}
   _winPanel: {fileID: 0}
   _winText: {fileID: 0}
---- !u!96 &6824399469380898586
+--- !u!1 &4504508579016454378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8719863665185717674}
+  - component: {fileID: 1894888308886172579}
+  m_Layer: 0
+  m_Name: Trails
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8719863665185717674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4504508579016454378}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 588251097620617683}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!96 &1894888308886172579
 TrailRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3862660546158504459}
+  m_GameObject: {fileID: 4504508579016454378}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 1
@@ -289,7 +321,7 @@ TrailRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
-    alignment: 0
+    alignment: 1
     textureMode: 0
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
@@ -324,7 +356,7 @@ Transform:
   m_GameObject: {fileID: 5100581972915737014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.02, z: 0}
+  m_LocalPosition: {x: 0, y: 0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -388,13 +420,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 2075170d2cc99ed49baf646a5ba48730, type: 2}
     - target: {fileID: 5866666021909216657, guid: 5d01ca75be4643140899a6abe9cc696a, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'Boy:Hips'\n\tTransform 'Boy:LeftArm'\n\tTransform
-        'Boy:RightHandRing1'\n\tTransform 'Boy:RightHandThumb1'\n\tTransform 'Boy:LeftHandRing2'\n\tTransform
-        'Boy:Head'\n\tTransform 'Boy:LeftHandPinky2'\n\tTransform 'Boy:RightHandIndex2'\n\tTransform
-        'Boy:RightArm'\n\tTransform 'Boy:RightUpLeg'\n\tand more ...\n\tFrom animation
-        clip 'Running'"
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 5d01ca75be4643140899a6abe9cc696a, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
