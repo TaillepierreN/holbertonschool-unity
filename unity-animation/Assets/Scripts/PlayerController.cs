@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundLayer);
+        if(_isGrounded && _animator.GetBool("isFalling") == true)
+        {
+            _animator.SetBool("isFalling", false);
+        }
         if (_isGrounded && _trailRenderer.emitting == true)
         {
             _trailRenderer.emitting = false;
@@ -90,6 +94,7 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y < -15)
         {
+            _animator.SetBool("isFalling", true);
             transform.position = _respawnPoint.position;
         }
     }
