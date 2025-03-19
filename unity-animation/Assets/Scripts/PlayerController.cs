@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private TrailRenderer _trailRenderer;
+    [SerializeField] private Animator _animator;
     
     private float _moveX;
     private float _moveZ;
@@ -52,11 +53,16 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = new Vector3(_moveX, 0f, _moveZ).normalized;
         if (moveDirection.magnitude >= 0.1f)
         {
+            _animator.SetBool("isRunning", true);
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSpeed * Time.fixedDeltaTime);
 
             Vector3 newPosition = transform.forward * MoveSpeed * Time.fixedDeltaTime;
             _rb.MovePosition(_rb.position + newPosition);
+        }
+        else
+        {
+            _animator.SetBool("isRunning", false);
         }
     }
 

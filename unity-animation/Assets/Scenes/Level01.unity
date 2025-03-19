@@ -12465,6 +12465,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6322146505281403176, guid: b4463cde4fdb67a4abe89eb1e54c33ed, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6322146505281403176, guid: b4463cde4fdb67a4abe89eb1e54c33ed, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9163138606384223011, guid: b4463cde4fdb67a4abe89eb1e54c33ed, type: 3}
       propertyPath: _respawnPoint
       value: 

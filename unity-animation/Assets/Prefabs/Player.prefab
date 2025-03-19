@@ -139,6 +139,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _trailRenderer: {fileID: 6824399469380898586}
+  _animator: {fileID: 6322146505281403176}
 --- !u!54 &1321102126354384245
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -385,6 +386,16 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 2075170d2cc99ed49baf646a5ba48730, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 5d01ca75be4643140899a6abe9cc696a, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Boy:Hips'\n\tTransform 'Boy:LeftArm'\n\tTransform
+        'Boy:RightHandRing1'\n\tTransform 'Boy:RightHandThumb1'\n\tTransform 'Boy:LeftHandRing2'\n\tTransform
+        'Boy:Head'\n\tTransform 'Boy:LeftHandPinky2'\n\tTransform 'Boy:RightHandIndex2'\n\tTransform
+        'Boy:RightArm'\n\tTransform 'Boy:RightUpLeg'\n\tand more ...\n\tFrom animation
+        clip 'Running'"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -393,5 +404,10 @@ PrefabInstance:
 --- !u!4 &98210666136707922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5d01ca75be4643140899a6abe9cc696a, type: 3}
+  m_PrefabInstance: {fileID: 492672923480802489}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6322146505281403176 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5d01ca75be4643140899a6abe9cc696a, type: 3}
   m_PrefabInstance: {fileID: 492672923480802489}
   m_PrefabAsset: {fileID: 0}
