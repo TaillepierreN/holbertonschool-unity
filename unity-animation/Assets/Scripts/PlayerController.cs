@@ -60,7 +60,15 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
-        Vector3 moveDirection = new Vector3(_moveX, 0f, _moveZ).normalized;
+
+        Vector3 camForward = Camera.main.transform.forward;
+        Vector3 camRight = Camera.main.transform.right;
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+
+        Vector3 moveDirection = camForward * _moveZ + camRight * _moveX;;
         if (moveDirection.magnitude >= 0.1f)
         {
             _animator.SetBool("isRunning", true);
