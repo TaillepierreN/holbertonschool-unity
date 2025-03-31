@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Transform _respawnPoint;
-    [SerializeField] private float _groundCheckRadius = 0.3f;
+    [SerializeField] private float _groundCheckRadius = 0.5f;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] private Animator _animator;
@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private bool _jumpPressed;
     private bool _isFalling = false;
     private bool _isStanding = true;
+
+    public bool IsGrounded => _isGrounded;
 
     void Update()
     {
