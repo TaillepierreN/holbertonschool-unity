@@ -1,19 +1,28 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
-public class StepsAudioHandler : MonoBehaviour
+public class PlayerAudioHandler : MonoBehaviour
 {
-    [SerializeField] private AudioSource footstepSource;
+    [SerializeField] private AudioSource playerAudioSource;
+    [SerializeField] private AudioSource impactAudioSource;
+
     [SerializeField] private AudioClip grassSteps;
     [SerializeField] private AudioClip rockSteps;
+
 
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Animator animator;
 
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheck;
-    private Material lastSurfaceMaterial;
 
-    void Update()
+
+	void Start()
+	{
+		playerController.ImpactSoundTriggered += OnImpactSoundTriggered;
+	}
+
+	void Update()
     {
         bool isRunning = animator.GetBool("isRunning");
         bool isJumping = animator.GetBool("isJumping");
@@ -23,13 +32,13 @@ public class StepsAudioHandler : MonoBehaviour
 
         if (isRunning && !isJumping && !isFalling && IsGrounded())
         {
-            if (!footstepSource.isPlaying)
-                footstepSource.Play();
+            if (!playerAudioSource.isPlaying)
+                playerAudioSource.Play();
         }
         else
         {
-            if (footstepSource.isPlaying)
-                footstepSource.Stop();
+            if (playerAudioSource.isPlaying)
+                playerAudioSource.Stop();
         }
     }
 
@@ -41,16 +50,20 @@ public class StepsAudioHandler : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Rock"))
-            footstepSource.clip = rockSteps;
+            playerAudioSource.clip = rockSteps;
 
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Rock"))
-            footstepSource.clip = grassSteps;
+            playerAudioSource.clip = grassSteps;
     }
 
+    private void OnImpactSoundTriggered()
+    {
+        impactAudioSource.Play();
+    }
 
 
 }

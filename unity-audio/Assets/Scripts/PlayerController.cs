@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private bool _isFalling = false;
     private bool _isStanding = true;
 
+    public event System.Action ImpactSoundTriggered;
+
     public bool IsGrounded => _isGrounded;
 
     void Update()
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour
         camForward.Normalize();
         camRight.Normalize();
 
-        Vector3 moveDirection = camForward * _moveZ + camRight * _moveX;;
+        Vector3 moveDirection = camForward * _moveZ + camRight * _moveX; ;
         if (moveDirection.magnitude >= 0.1f)
         {
             _animator.SetBool("isRunning", true);
@@ -116,7 +118,12 @@ public class PlayerController : MonoBehaviour
     }
     public void StandBackUp()
     {
-        _isFalling = false;
         _isStanding = true;
+        _isFalling = false;
+    }
+
+    public void TriggerImpactSound()
+    {
+        ImpactSoundTriggered?.Invoke();
     }
 }
