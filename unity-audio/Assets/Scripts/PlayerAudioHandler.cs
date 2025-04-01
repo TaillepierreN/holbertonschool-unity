@@ -22,6 +22,11 @@ public class PlayerAudioHandler : MonoBehaviour
 		playerController.ImpactSoundTriggered += OnImpactSoundTriggered;
 	}
 
+	void OnDestroy()
+	{
+		playerController.ImpactSoundTriggered -= OnImpactSoundTriggered;
+	}
+
 	void Update()
     {
         bool isRunning = animator.GetBool("isRunning");
