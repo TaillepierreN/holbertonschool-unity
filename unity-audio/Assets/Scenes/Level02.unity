@@ -12081,6 +12081,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7338589407498729313, guid: c51fe7be64b9f6b498d9ea3a4c32bf2d, type: 3}
+      propertyPath: pauseSnapshot
+      value: 
+      objectReference: {fileID: -5305655008698933273, guid: 8a1584349018cdb42bd18b5fbe4f1034, type: 2}
+    - target: {fileID: 7338589407498729313, guid: c51fe7be64b9f6b498d9ea3a4c32bf2d, type: 3}
+      propertyPath: defaultSnapshot
+      value: 
+      objectReference: {fileID: 24500006, guid: 8a1584349018cdb42bd18b5fbe4f1034, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

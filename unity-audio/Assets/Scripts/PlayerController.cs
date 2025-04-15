@@ -124,6 +124,7 @@ public class PlayerController : MonoBehaviour
 
     public void TriggerImpactSound()
     {
+        _animator.SetBool("isRunning", false);
         ImpactSoundTriggered?.Invoke();
     }
 }

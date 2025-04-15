@@ -67,6 +67,7 @@ public class PlayerAudioHandler : MonoBehaviour
 
     private void OnImpactSoundTriggered()
     {
+        playerAudioSource.Stop();
         impactAudioSource.Play();
     }
 
