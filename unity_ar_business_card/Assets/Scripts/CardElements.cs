@@ -48,13 +48,15 @@ public class CardElements : MonoBehaviour
 		{
 			int index = i;
 			float delay = i * delayBetween;
+			var button = buttons[i];
+			button.DOKill();
+			button.DOScale(1f, duration).SetDelay(delay).SetEase(Ease.OutBack);
+			button.DOLocalMove(targetPositions[index], duration).SetDelay(delay).SetEase(Ease.OutCubic);
 
-			buttons[index].DOScale(1f, duration).SetDelay(delay).SetEase(Ease.OutBack);
-			buttons[index].DOLocalMove(targetPositions[index], duration).SetDelay(delay).SetEase(Ease.OutCubic);
-
-			CanvasGroup cg = buttons[index].GetComponent<CanvasGroup>();
+			CanvasGroup cg = button.GetComponent<CanvasGroup>();
 			if (cg != null)
 			{
+				cg.DOKill();
 				cg.DOFade(1f, duration).SetDelay(delay);
 			}
 		}
@@ -87,12 +89,14 @@ public class CardElements : MonoBehaviour
 	{
 		for (int i = 0; i < buttons.Length; i++)
 		{
-			buttons[i].localPosition = Vector3.zero;
+			var button = buttons[i];
+			button.DOKill();
+			button.localPosition = Vector3.zero;
 
-			CanvasGroup cg = buttons[i].GetComponent<CanvasGroup>();
+			CanvasGroup cg = button.GetComponent<CanvasGroup>();
 			if (cg != null) cg.alpha = 0;
 
-			buttons[i].localScale = Vector3.zero;
+			button.localScale = Vector3.zero;
 		}
 	}
 	private void ResetName()
