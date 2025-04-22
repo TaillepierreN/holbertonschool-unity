@@ -1,19 +1,10 @@
 # ninja log v5
-192	1918	7665820757258874	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	11e653c79e5af390
-232	2119	7665820759281136	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8a30d52125e4f1e3
-73	1812	7665820756201875	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	b103e575b3e33bd2
-2543	3146	7665820769467071	G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity_ar_business_card/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5pu4v1fo/obj/arm64-v8a/libgame.so	aa6f2d4dcebb1e96
-13	1772	7665820755702191	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	83eab3f5776c154
-107	2096	7665820759051041	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	133743a0e7edffc3
-131	1955	7665820757598894	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	dbbaaf6e6e5ad0b7
-155	2422	7665820762359262	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	8113d4406cfcc125
-38	2542	7665820763574805	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	f358f997db863731
-37	1179	7665862923452085	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	83eab3f5776c154
-19	1239	7665862924032075	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	b103e575b3e33bd2
-76	1241	7665862924032075	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	11e653c79e5af390
-90	1279	7665862924452057	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	dbbaaf6e6e5ad0b7
-56	1412	7665862925816311	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	133743a0e7edffc3
-127	1503	7665862926037214	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8a30d52125e4f1e3
-111	1651	7665862928212256	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	8113d4406cfcc125
-4	1789	7665862929568167	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	f358f997db863731
-1789	2033	7665862931858524	G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity_ar_business_card/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5pu4v1fo/obj/arm64-v8a/libgame.so	aa6f2d4dcebb1e96
+43	1792	7670193176856746	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	11e653c79e5af390
+27	1801	7670193177117549	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	83eab3f5776c154
+58	2080	7670193179951697	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8a30d52125e4f1e3
+50	2097	7670193180032317	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	dbbaaf6e6e5ad0b7
+18	2133	7670193180557685	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	b103e575b3e33bd2
+1	2353	7670193182729746	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	133743a0e7edffc3
+36	2593	7670193185180325	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	8113d4406cfcc125
+10	2731	7670193186520316	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	f358f997db863731
+2732	2923	7670193188300347	G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity_ar_business_card/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/5pu4v1fo/obj/arm64-v8a/libgame.so	aa6f2d4dcebb1e96
