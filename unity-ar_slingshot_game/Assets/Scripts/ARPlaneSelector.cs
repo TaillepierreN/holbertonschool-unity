@@ -40,6 +40,7 @@ public class ARPlaneSelector : MonoBehaviour
             if (SelectedPlane != null)
             {
                 _isPlaneSelected = true;
+                
                 foreach (var plane in _planeManager.trackables)
                 {
                     if (plane.trackableId != SelectedPlane.trackableId)
@@ -47,8 +48,14 @@ public class ARPlaneSelector : MonoBehaviour
                         plane.gameObject.SetActive(false);
                     }
                 }
+
                 _planeManager.enabled = false;
-                SelectedPlane.GetComponent<MeshRenderer>().enabled = false;
+
+                if (SelectedPlane.TryGetComponent<MeshRenderer>(out var meshRenderer))
+                {
+                    meshRenderer.enabled = false;
+                }
+
 
                 if (_startButton != null)
                     _startButton.SetActive(true);
