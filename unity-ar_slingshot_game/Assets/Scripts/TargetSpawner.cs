@@ -22,34 +22,48 @@ public class TargetSpawner : MonoBehaviour
     private void SpawnTargets()
     {
         ARPlane plane = ARPlaneSelector.SelectedPlane;
-        Mesh mesh = plane.GetComponent<MeshFilter>().mesh;
-        Bounds bounds = mesh.bounds;
 
         Vector3 planeCenter = plane.transform.position;
 
         for (int i = 0; i < _targetNumber; i++)
         {
-            Vector3 offset = GetRandomPositionOnPlane(plane, bounds);
+            Vector3 offset = GetRandomPositionOnPlane(plane);
             Vector3 spawnPosition = planeCenter + plane.transform.TransformVector(offset);
             spawnPosition.y += _spawnYOffset;
 
             GameObject target = Instantiate(_targetPrefab, spawnPosition, Quaternion.identity);
 
-            float distance = Vector3.Distance(Camera.main.transform.position, spawnPosition);
-            float scale = Mathf.Clamp(1f / distance, 0.05f, 0.3f);
-            target.transform.localScale = Vector3.one * scale;
 
             target.GetComponent<TargetMovement>().Initialise(plane.transform);
         }
     }
 
-    private Vector3 GetRandomPositionOnPlane(ARPlane plane, Bounds bounds)
+    private Vector3 GetRandomPositionOnPlane(ARPlane plane)
     {
-        float randomX = Random.Range(bounds.min.x, bounds.max.x);
-        float randomZ = Random.Range(bounds.min.z, bounds.max.z);
+        var boundary = plane.boundary;
+        if (boundary.Length < 3)
+        {
+            return Vector3.zero;
+        }
 
-        Vector3 randomPosition = new Vector3(randomX, 0, randomZ);
+        int i1 = Random.Range(0, boundary.Length);
+        int i2 = (i1 + 1) % boundary.Length;
 
-        return randomPosition;
+        Vector2 a = boundary[i1];
+        Vector2 b = boundary[i2];
+        Vector2 c = Vector2.zero;
+
+        float r1 = Random.value;
+        float r2 = Random.value;
+
+        // Barycentric interpolation to get a point inside the triangle. thanks google
+        if (r1 + r2 > 1f)
+        {
+            r1 = 1f - r1;
+            r2 = 1f - r2;
+        }
+
+        Vector2 point = a + r1 * (b - a) + r2 * (c - a);
+        return new Vector3(point.x, 0f, point.y);
     }
 }
