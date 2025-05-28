@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e8c7309235c1846962de8ea15e0276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetPrefab: {fileID: 5780074004291537482, guid: c8294be2cd18e5a438c3ca46ac3c1a2d, type: 3}
+  _targetPrefab: {fileID: 3680836891165611741, guid: aa64a696135814046b97631f148f4d79, type: 3}
   _targetNumber: 5
   _spawnYOffset: 0.01
 --- !u!1 &1837009626

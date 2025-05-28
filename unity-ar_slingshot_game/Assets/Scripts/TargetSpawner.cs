@@ -34,7 +34,7 @@ public class TargetSpawner : MonoBehaviour
             GameObject target = Instantiate(_targetPrefab, spawnPosition, Quaternion.identity);
 
 
-            target.GetComponent<TargetMovement>().Initialise(plane.transform);
+            target.GetComponent<TargetMovement>().Initialise(plane.transform, plane);
         }
     }
 

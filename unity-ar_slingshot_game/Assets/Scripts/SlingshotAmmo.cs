@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using Quaternion = UnityEngine.Quaternion;
@@ -55,30 +56,27 @@ public class SlingshotAmmo : MonoBehaviour
         HandleToucheInput();
         CheckOutOfBonds();
         CheckPlaneHit();
-        if (Input.touchCount > 0)
-        {
-            Debugger.ShowText("Touching: " + Input.GetTouch(0).position);
-        }
-
     }
 
     private void HandleToucheInput()
     {
-        if (_touchscreen == null || !_touchscreen.primaryTouch.press.isPressed)
+        if (_touchscreen == null)
             return;
 
-        Vector2 currentTouchPos = _touchscreen.primaryTouch.position.ReadValue();
-        Ray ray = _arCamera.ScreenPointToRay(currentTouchPos);
+        TouchControl touch = _touchscreen.primaryTouch;
         RaycastHit hit;
+
         if (!_isDragging)
         {
-            if (_touchscreen.primaryTouch.press.wasPressedThisFrame)
+            if (touch.press.wasPressedThisFrame)
             {
+                Vector2 touchPos = touch.position.ReadValue();
+                Ray ray = _arCamera.ScreenPointToRay(touchPos);
                 if (Physics.Raycast(ray, out hit))
                 {
                     if (hit.collider.GetComponentInParent<SlingshotAmmo>() == this)
                     {
-                        _startDragPosition = currentTouchPos;
+                        _startDragPosition = touchPos;
                         _isDragging = true;
                         _rb.isKinematic = true;
                         Debugger.ShowText("Drag started on: " + hit.collider.name);
@@ -88,7 +86,9 @@ public class SlingshotAmmo : MonoBehaviour
         }
         else
         {
-            if (_touchscreen.primaryTouch.press.isPressed)
+            Vector2 currentTouchPos = touch.position.ReadValue();
+            
+            if (touch.press.isPressed)
             {
                 Vector3 dragWorldPos = _arCamera.ScreenToWorldPoint(new Vector3(currentTouchPos.x, currentTouchPos.y, 1f));
                 transform.position = dragWorldPos;
@@ -100,8 +100,8 @@ public class SlingshotAmmo : MonoBehaviour
                 Vector3 forceDir = new Vector3(dragVector.x, dragVector.y, 0f).normalized;
                 Vector3 worldForceDir = _arCamera.transform.TransformDirection(forceDir);
 
-                _rb.linearVelocity = worldForceDir * dragVector.magnitude * _force * 0.001f;
                 _rb.isKinematic = false;
+                _rb.linearVelocity = worldForceDir * dragVector.magnitude * _force * 0.001f;
                 _isDragging = false;
             }
         }
