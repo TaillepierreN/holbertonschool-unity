@@ -13,7 +13,7 @@ public class ARPlaneSelector : MonoBehaviour
     [SerializeField] private ARRaycastManager _raycastManager;
     [SerializeField] private Material _selectedPlaneMaterial;
     [SerializeField] private GameObject _startButton;
-    [SerializeField] private GameObject _ammoPrefab;
+    [SerializeField] private GameObject _planeSelectionUI;
 
     public static ARPlane SelectedPlane { get; private set; }
 
@@ -75,17 +75,9 @@ public class ARPlaneSelector : MonoBehaviour
 
                 if (_startButton != null)
                     _startButton.SetActive(true);
-
+                _planeSelectionUI.SetActive(false);
             }
         }
     }
 
-    public void SpawnAmmo()
-    {
-        Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0.5f);
-        Vector3 spawnWorldPos = Camera.main.ScreenToWorldPoint(screenCenter);
-        GameObject ammo = Instantiate(_ammoPrefab, spawnWorldPos, Quaternion.identity);
-        Debugger.ShowText("Ammo spawned at: " + Camera.main.transform.position);
-        ammo.GetComponent<SlingshotAmmo>().Spawn();
-    }
 }

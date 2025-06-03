@@ -87,7 +87,7 @@ public class SlingshotAmmo : MonoBehaviour
         else
         {
             Vector2 currentTouchPos = touch.position.ReadValue();
-            
+
             if (touch.press.isPressed)
             {
                 Vector3 dragWorldPos = _arCamera.ScreenToWorldPoint(new Vector3(currentTouchPos.x, currentTouchPos.y, 1f));
@@ -132,9 +132,13 @@ public class SlingshotAmmo : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Debugger.ShowText("Collision with: " + collision.gameObject.name);
+        Debugger.AppendText("Tag: " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Target"))
         {
             ResetAmmo();
+            Destroy(collision.gameObject);
+            EventManager.Instance.TriggerScored();
         }
     }
 
@@ -142,16 +146,23 @@ public class SlingshotAmmo : MonoBehaviour
     {
         if (!_arCamera)
             return;
-        Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, .5f);
-        Vector3 worldPos = _arCamera.ScreenToWorldPoint(screenCenter);
+        if (EventManager.Instance.GameManager.GetAmmoCount() > 0)
+        {
+            Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, .5f);
+            Vector3 worldPos = _arCamera.ScreenToWorldPoint(screenCenter);
 
 
-        _rb.linearVelocity = Vector3.zero;
-        _rb.angularVelocity = Vector3.zero;
-        _rb.isKinematic = true;
+            _rb.linearVelocity = Vector3.zero;
+            _rb.angularVelocity = Vector3.zero;
+            _rb.isKinematic = true;
 
-        transform.position = worldPos;
-        transform.rotation = Quaternion.identity;
+            transform.position = worldPos;
+            transform.rotation = Quaternion.identity;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     public void Spawn()
     {
