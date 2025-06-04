@@ -7,6 +7,8 @@ public class EventManager : MonoBehaviour
     public event Action OnStartGame;
     public event Action AmmoLaunched;
     public event Action Scored;
+    public event Action OnScoreUpdated;
+    public event Action<int> OnAmmoCountUpdated;
 
     public GameManager GameManager { get; private set; }
 
@@ -38,5 +40,13 @@ public class EventManager : MonoBehaviour
     public void SetGameManager(GameManager gameManager)
     {
         GameManager = gameManager;
+    }
+    public void UpdateScore()
+    {
+        OnScoreUpdated?.Invoke();
+    }
+    public void UpdateAmmoCount(int ammoNbr)
+    {
+        OnAmmoCountUpdated?.Invoke(ammoNbr);
     }
 }

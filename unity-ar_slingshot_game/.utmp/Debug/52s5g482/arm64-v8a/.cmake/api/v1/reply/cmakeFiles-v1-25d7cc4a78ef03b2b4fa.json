@@ -49,7 +49,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake"
+			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeSystem.cmake"
 		},
 		{
 			"isExternal" : true,
@@ -324,7 +324,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCCompiler.cmake"
+			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -558,7 +558,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake"
+			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -722,7 +722,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCCompiler.cmake"
+			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -816,20 +816,20 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake"
+			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/arm64-v8a/CMakeFiles/3.22.1-g37088a8-dirty/CMakeCXXCompiler.cmake"
 		},
 		{
 			"path" : "GameActivity/CMakeLists.txt"
 		},
 		{
 			"isExternal" : true,
-			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/prefab/arm64-v8a/prefab/lib/aarch64-linux-android/cmake/game-activity/game-activityConfig.cmake"
+			"path" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/prefab/arm64-v8a/prefab/lib/aarch64-linux-android/cmake/game-activity/game-activityConfig.cmake"
 		}
 	],
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/arm64-v8a",
+		"build" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/arm64-v8a",
 		"source" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp"
 	},
 	"version" : 

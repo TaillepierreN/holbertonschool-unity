@@ -79,7 +79,7 @@ public class SlingshotAmmo : MonoBehaviour
                         _startDragPosition = touchPos;
                         _isDragging = true;
                         _rb.isKinematic = true;
-                        Debugger.ShowText("Drag started on: " + hit.collider.name);
+                        //Debugger.ShowText("Drag started on: " + hit.collider.name);
                     }
                 }
             }
@@ -103,6 +103,7 @@ public class SlingshotAmmo : MonoBehaviour
                 _rb.isKinematic = false;
                 _rb.linearVelocity = worldForceDir * dragVector.magnitude * _force * 0.001f;
                 _isDragging = false;
+                EventManager.Instance.TriggerAmmoLaunched();
             }
         }
     }
@@ -132,8 +133,7 @@ public class SlingshotAmmo : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        Debugger.ShowText("Collision with: " + collision.gameObject.name);
-        Debugger.AppendText("Tag: " + collision.gameObject.tag);
+
         if (collision.gameObject.CompareTag("Target"))
         {
             ResetAmmo();

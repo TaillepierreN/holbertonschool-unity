@@ -1,4 +1,6 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,12 +28,13 @@ public class GameManager : MonoBehaviour
         Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0.5f);
         Vector3 spawnWorldPos = Camera.main.ScreenToWorldPoint(screenCenter);
         GameObject ammo = Instantiate(_ammoPrefab, spawnWorldPos, Quaternion.identity);
-        Debugger.ShowText("Ammo spawned at: " + Camera.main.transform.position);
+        //Debugger.ShowText("Ammo spawned at: " + Camera.main.transform.position);
         ammo.GetComponent<SlingshotAmmo>().Spawn();
     }
     public void IncrementScore()
     {
         _score += 10;
+        EventManager.Instance.UpdateScore();
     }
     public int GetScore()
     {
@@ -39,10 +42,23 @@ public class GameManager : MonoBehaviour
     }
     public void DecrementAmmoCount()
     {
+        Debugger.ShowText("Ammo count before decrement: " + _ammoCount);
         _ammoCount--;
+        Debugger.AppendText("Ammo count decremented: " + _ammoCount);
+        EventManager.Instance.UpdateAmmoCount(_ammoCount);
+        //Debugger.ShowText("Ammo count decremented: " + _ammoCount);
     }
     public int GetAmmoCount()
     {
         return _ammoCount;
+    }
+
+    public void ReloadGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

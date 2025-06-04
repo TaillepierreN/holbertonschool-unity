@@ -115,7 +115,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "RelWithDebInfo"
+			"value" : "Debug"
 		},
 		{
 			"name" : "CMAKE_CACHEFILE_DIR",
@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "g:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/arm64-v8a"
+			"value" : "g:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/arm64-v8a"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -599,7 +599,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "G:\\Dev\\2024-2025 Holberton\\holbertonschool-unity\\unity-ar_slingshot_game\\.utmp\\RelWithDebInfo\\4k4c4j2y\\prefab\\arm64-v8a\\prefab"
+			"value" : "G:\\Dev\\2024-2025 Holberton\\holbertonschool-unity\\unity-ar_slingshot_game\\.utmp\\Debug\\52s5g482\\prefab\\arm64-v8a\\prefab"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -695,7 +695,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "G:\\Dev\\2024-2025 Holberton\\holbertonschool-unity\\unity-ar_slingshot_game\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\build\\intermediates\\cxx\\RelWithDebInfo\\4k4c4j2y\\obj\\arm64-v8a"
+			"value" : "G:\\Dev\\2024-2025 Holberton\\holbertonschool-unity\\unity-ar_slingshot_game\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\build\\intermediates\\cxx\\Debug\\52s5g482\\obj\\arm64-v8a"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -967,7 +967,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "G:\\Dev\\2024-2025 Holberton\\holbertonschool-unity\\unity-ar_slingshot_game\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\build\\intermediates\\cxx\\RelWithDebInfo\\4k4c4j2y\\obj\\arm64-v8a"
+			"value" : "G:\\Dev\\2024-2025 Holberton\\holbertonschool-unity\\unity-ar_slingshot_game\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\build\\intermediates\\cxx\\Debug\\52s5g482\\obj\\arm64-v8a"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1239,7 +1239,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/arm64-v8a"
+			"value" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/arm64-v8a"
 		},
 		{
 			"name" : "Unity_IS_TOP_LEVEL",
@@ -1275,7 +1275,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/prefab/arm64-v8a/prefab/lib/aarch64-linux-android/cmake/game-activity"
+			"value" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/prefab/arm64-v8a/prefab/lib/aarch64-linux-android/cmake/game-activity"
 		},
 		{
 			"name" : "game_BINARY_DIR",
@@ -1287,7 +1287,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/RelWithDebInfo/4k4c4j2y/arm64-v8a/GameActivity"
+			"value" : "G:/Dev/2024-2025 Holberton/holbertonschool-unity/unity-ar_slingshot_game/.utmp/Debug/52s5g482/arm64-v8a/GameActivity"
 		},
 		{
 			"name" : "game_IS_TOP_LEVEL",
