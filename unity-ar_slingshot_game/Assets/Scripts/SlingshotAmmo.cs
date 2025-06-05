@@ -140,6 +140,10 @@ public class SlingshotAmmo : MonoBehaviour
             Destroy(collision.gameObject);
             EventManager.Instance.TriggerScored();
         }
+        else if (collision.gameObject.CompareTag("Ground"))
+        {
+            ResetAmmo();
+        }
     }
 
     private void ResetAmmo()
