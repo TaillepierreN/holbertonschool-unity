@@ -4,12 +4,15 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _scoreTxt;
+    [SerializeField] private GameObject _retryButton;
     [SerializeField] private AmmoSelected[] _ammoCounterTokens;
 
     private void Start()
     {
         EventManager.Instance.OnScoreUpdated += UpdateScoreText;
         EventManager.Instance.OnAmmoCountUpdated += UpdateAmmoCounter;
+        EventManager.Instance.OnResetGame += ResetGame;
+        EventManager.Instance.ShowRetry += ShowRetryButton;
 
     }
 
@@ -17,15 +20,17 @@ public class UIManager : MonoBehaviour
     {
         EventManager.Instance.OnScoreUpdated -= UpdateScoreText;
         EventManager.Instance.OnAmmoCountUpdated -= UpdateAmmoCounter;
+        EventManager.Instance.OnResetGame -= ResetGame;
+        EventManager.Instance.ShowRetry -= ShowRetryButton;
     }
-    public void UpdateScoreText()
+    private void UpdateScoreText()
     {
         if (_scoreTxt != null)
         {
             _scoreTxt.text = $"Score: {EventManager.Instance.GameManager.GetScore()}";
         }
     }
-    public void UpdateAmmoCounter(int ammoNbr)
+    private void UpdateAmmoCounter(int ammoNbr)
     {
 
         try
@@ -54,6 +59,26 @@ public class UIManager : MonoBehaviour
         {
             Debug.LogError($"Error updating ammo counter: {ex.Message}");
         }
+    }
+    public void ResetGame()
+    {
+        ResetAmmoCounter();
+        UpdateScoreText();
+        _retryButton.SetActive(false);
+    }
 
+    public void ResetAmmoCounter()
+    {
+        foreach (var ammoToken in _ammoCounterTokens)
+        {
+            ammoToken.UnselectAmmo();
+            ammoToken.ResetUsedAmmo();
+        }
+        _ammoCounterTokens[_ammoCounterTokens.Length - 1].SetSelectedAmmo();
+    }
+
+    public void ShowRetryButton()
+    {
+        _retryButton.SetActive(true);
     }
 }

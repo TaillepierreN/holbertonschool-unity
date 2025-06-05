@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 
@@ -8,9 +9,30 @@ public class TargetSpawner : MonoBehaviour
     [SerializeField] private float _spawnYOffset = 0.01f;
 
     private bool _hasSpawned = false;
+    private List<GameObject> _targetList = new List<GameObject>();
 
+    private void Start()
+    {
+        EventManager.Instance.OnResetGame += ResetTargets;
+        _targetList.Clear();
+	}
+    private void OnDestroy()
+    {
+        EventManager.Instance.OnResetGame -= ResetTargets;
+    }
 
-    void Update()
+    private void ResetTargets()
+    {
+        foreach (GameObject target in _targetList)
+        {
+            if (target == null) continue;
+                Destroy(target);
+        }
+        _targetList.Clear();
+        _hasSpawned = false;
+    }
+    
+	void Update()
     {
         if (!_hasSpawned && ARPlaneSelector.SelectedPlane != null)
         {
@@ -35,6 +57,7 @@ public class TargetSpawner : MonoBehaviour
 
 
             target.GetComponent<TargetMovement>().Initialise(plane.transform, plane);
+            _targetList.Add(target);
         }
     }
 

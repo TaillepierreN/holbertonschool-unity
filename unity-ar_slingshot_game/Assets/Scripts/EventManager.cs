@@ -8,6 +8,9 @@ public class EventManager : MonoBehaviour
     public event Action AmmoLaunched;
     public event Action Scored;
     public event Action OnScoreUpdated;
+    public event Action ShowRetry;
+    public event Action OnResetGame;
+
     public event Action<int> OnAmmoCountUpdated;
 
     public GameManager GameManager { get; private set; }
@@ -48,5 +51,16 @@ public class EventManager : MonoBehaviour
     public void UpdateAmmoCount(int ammoNbr)
     {
         OnAmmoCountUpdated?.Invoke(ammoNbr);
+    }
+    public void ResetGame()
+    {
+        OnResetGame?.Invoke();
+    }
+    public void CheckEndGame()
+    {
+        if (GameManager.GetAmmoCount() <= 0)
+        {
+            ShowRetry?.Invoke();
+        }
     }
 }

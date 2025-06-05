@@ -146,6 +146,7 @@ public class SlingshotAmmo : MonoBehaviour
     {
         if (!_arCamera)
             return;
+        EventManager.Instance.CheckEndGame();
         if (EventManager.Instance.GameManager.GetAmmoCount() > 0)
         {
             Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, .5f);

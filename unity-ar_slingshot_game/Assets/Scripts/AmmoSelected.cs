@@ -25,5 +25,14 @@ public class AmmoSelected : MonoBehaviour
             Debugger.AppendText($"No ammo image found");
         }
     }
+    public void ResetUsedAmmo()
+    {
+        if (_ammoImage != null)
+            _ammoImage.enabled = true;
+        else
+        {
+            Debugger.AppendText($"No ammo image found");
+        }
+    } 
 
 }

@@ -1,4 +1,3 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,6 +50,13 @@ public class GameManager : MonoBehaviour
     public int GetAmmoCount()
     {
         return _ammoCount;
+    }
+
+    public void RestartGame()
+    {
+        _score = 0;
+        _ammoCount = 7;
+        EventManager.Instance.ResetGame();
     }
 
     public void ReloadGame()
