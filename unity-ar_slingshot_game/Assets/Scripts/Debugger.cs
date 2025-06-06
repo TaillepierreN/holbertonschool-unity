@@ -3,9 +3,8 @@ using TMPro;
 
 public class Debugger : MonoBehaviour
 {
-    public static Debugger Instance { get; private set; }
-
     [SerializeField] private TextMeshProUGUI debugText;
+    public static Debugger Instance { get; private set; }
     public bool isDebugEnabled = true;
 
     private void Awake()
@@ -20,7 +19,10 @@ public class Debugger : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         ClearText();
     }
-
+    /// <summary>
+    /// Shows a debug message in the UI text element if debugging is enabled.
+    /// </summary>
+    /// <param name="message"></param>
     public static void ShowText(string message)
     {
         if (Instance != null && Instance.debugText != null && Instance.isDebugEnabled)
@@ -30,17 +32,24 @@ public class Debugger : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Appends a debug message to the existing text in the UI text element if debugging is enabled.
+    /// </summary>
+    /// <param name="message"></param>
     public static void AppendText(string message)
     {
-        if (Instance != null && Instance.debugText != null  && Instance.isDebugEnabled)
+        if (Instance != null && Instance.debugText != null && Instance.isDebugEnabled)
         {
             Instance.debugText.text += "\n" + message;
         }
     }
 
+    /// <summary>
+    /// Clears the debug text in the UI text element if debugging is enabled.
+    /// </summary>
     public static void ClearText()
     {
-        if (Instance != null && Instance.debugText != null  && Instance.isDebugEnabled)
+        if (Instance != null && Instance.debugText != null && Instance.isDebugEnabled)
         {
             Instance.debugText.text = "";
         }

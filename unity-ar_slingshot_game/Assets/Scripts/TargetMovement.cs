@@ -4,14 +4,12 @@ using UnityEngine.XR.ARFoundation;
 
 public class TargetMovement : MonoBehaviour
 {
+    [SerializeField] private float _speed = 0.1f;
+    [SerializeField] private float _directionChangeInterval = 2f;
     private Vector3 _direction;
     private Transform _planeTransform;
     private ARPlane _plane;
     private List<Vector2> _boundary = new List<Vector2>();
-
-    [SerializeField] private float _speed = 0.1f;
-    [SerializeField] private float _directionChangeInterval = 2f;
-
     private float _timer = 0f;
 
     void Update()
@@ -44,6 +42,11 @@ public class TargetMovement : MonoBehaviour
             SetRandomDirection();
         }
     }
+    /// <summary>
+    /// Initialises the target movement with the plane transform and ARPlane.
+    /// </summary>
+    /// <param name="plane"></param>
+    /// <param name="arPlane"></param>
     public void Initialise(Transform plane, ARPlane arPlane)
     {
         _planeTransform = plane;
@@ -57,13 +60,16 @@ public class TargetMovement : MonoBehaviour
         SetRandomDirection();
     }
 
+    /// <summary>
+    /// Sets a random direction for the target to move in.
+    /// </summary>
     private void SetRandomDirection()
     {
         _direction = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
     }
 
     /// <summary>
-    ///  Ray Casting algorithm, thanks internet again, too much math for me.
+    ///  Check if inside boundary using Ray Casting algorithm, thanks internet again, too much math for me.
     /// </summary>
     /// <param name="point"></param>
     /// <returns></returns>

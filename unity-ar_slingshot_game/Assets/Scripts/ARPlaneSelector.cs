@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
@@ -15,10 +13,10 @@ public class ARPlaneSelector : MonoBehaviour
     [SerializeField] private GameObject _startButton;
     [SerializeField] private GameObject _planeSelectionUI;
 
-    public static ARPlane SelectedPlane { get; private set; }
-
-    private bool _isPlaneSelected = false;
+    public static ARPlane SelectedPlane { get; set; }
     private static List<ARRaycastHit> _hits = new List<ARRaycastHit>();
+    private bool _isPlaneSelected = false;
+
 
     void Awake()
     {
@@ -49,6 +47,11 @@ public class ARPlaneSelector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Tries to select a plane based on the screen position of the touch input.
+    /// If a plane is selected, it disables the plane manager and updates the UI accordingly.
+    /// </summary>
+    /// <param name="screenPosition"></param>
     private void TrySelectPlace(Vector2 screenPosition)
     {
         if (_raycastManager.Raycast(screenPosition, _hits, TrackableType.PlaneWithinPolygon))
@@ -71,6 +74,7 @@ public class ARPlaneSelector : MonoBehaviour
                 if (SelectedPlane.TryGetComponent<MeshRenderer>(out var meshRenderer))
                 {
                     meshRenderer.material = _selectedPlaneMaterial;
+                    meshRenderer.enabled = false;
                 }
 
                 if (_startButton != null)

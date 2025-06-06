@@ -20,17 +20,6 @@ public class TargetSpawner : MonoBehaviour
     {
         EventManager.Instance.OnResetGame -= ResetTargets;
     }
-
-    private void ResetTargets()
-    {
-        foreach (GameObject target in _targetList)
-        {
-            if (target == null) continue;
-                Destroy(target);
-        }
-        _targetList.Clear();
-        _hasSpawned = false;
-    }
     
 	void Update()
     {
@@ -41,6 +30,23 @@ public class TargetSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets the targets by destroying all currently spawned targets and clearing the target list.
+    /// </summary>
+    private void ResetTargets()
+    {
+        foreach (GameObject target in _targetList)
+        {
+            if (target == null) continue;
+            Destroy(target);
+        }
+        _targetList.Clear();
+        _hasSpawned = false;
+    }
+
+    /// <summary>
+    /// Spawns a specified number of targets on the selected AR plane.
+    /// </summary>
     private void SpawnTargets()
     {
         ARPlane plane = ARPlaneSelector.SelectedPlane;
@@ -61,6 +67,11 @@ public class TargetSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Generates a random position on the given AR plane.
+    /// </summary>
+    /// <param name="plane"></param>
+    /// <returns></returns>
     private Vector3 GetRandomPositionOnPlane(ARPlane plane)
     {
         var boundary = plane.boundary;

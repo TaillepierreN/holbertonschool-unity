@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
         EventManager.Instance.OnResetGame -= ResetGame;
         EventManager.Instance.ShowRetry -= ShowRetryButton;
     }
+    /// <summary>
+    /// Updates the score text in the UI to reflect the current score from the GameManager.
+    /// </summary>
     private void UpdateScoreText()
     {
         if (_scoreTxt != null)
@@ -30,6 +33,10 @@ public class UIManager : MonoBehaviour
             _scoreTxt.text = $"Score: {EventManager.Instance.GameManager.GetScore()}";
         }
     }
+    /// <summary>
+    /// Updates the ammo counter in the UI based on the current ammo number.
+    /// </summary>
+    /// <param name="ammoNbr"></param>
     private void UpdateAmmoCounter(int ammoNbr)
     {
 
@@ -60,6 +67,9 @@ public class UIManager : MonoBehaviour
             Debug.LogError($"Error updating ammo counter: {ex.Message}");
         }
     }
+    /// <summary>
+    /// Resets the game by resetting the ammo counter, updating the score text, and hiding the retry button.
+    /// </summary>
     public void ResetGame()
     {
         ResetAmmoCounter();
@@ -67,6 +77,9 @@ public class UIManager : MonoBehaviour
         _retryButton.SetActive(false);
     }
 
+    /// <summary>
+    /// Resets the ammo counter by unselecting all ammo tokens and resetting their used state.
+    /// </summary>
     public void ResetAmmoCounter()
     {
         foreach (var ammoToken in _ammoCounterTokens)
@@ -77,6 +90,9 @@ public class UIManager : MonoBehaviour
         _ammoCounterTokens[_ammoCounterTokens.Length - 1].SetSelectedAmmo();
     }
 
+    /// <summary>
+    /// Displays the retry button in the UI, allowing the player to restart the game.
+    /// </summary>
     public void ShowRetryButton()
     {
         _retryButton.SetActive(true);

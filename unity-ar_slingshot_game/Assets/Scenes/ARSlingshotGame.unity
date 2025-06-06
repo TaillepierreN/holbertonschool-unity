@@ -2690,7 +2690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugText: {fileID: 2062667416}
-  isDebugEnabled: 1
+  isDebugEnabled: 0
 --- !u!114 &1837009632
 MonoBehaviour:
   m_ObjectHideFlags: 0
