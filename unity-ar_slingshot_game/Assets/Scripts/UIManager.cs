@@ -5,7 +5,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _scoreTxt;
     [SerializeField] private TMP_Text _highscoreTxt;
-    [SerializeField] private GameObject _retryButton;
+    [SerializeField] private GameObject _retryPanel;
     [SerializeField] private AmmoSelected[] _ammoCounterTokens;
 
     private void Start()
@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour
     {
         ResetAmmoCounter();
         UpdateScoreText();
-        _retryButton.SetActive(false);
+        _retryPanel.SetActive(false);
     }
 
     /// <summary>
@@ -96,7 +96,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     private void ShowRetryButton()
     {
-        _retryButton.SetActive(true);
+        _retryPanel.SetActive(true);
     }
     /// <summary>
     /// Sets the high score text in the UI to reflect the provided high score value.

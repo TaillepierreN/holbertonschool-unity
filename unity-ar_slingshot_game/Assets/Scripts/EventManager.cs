@@ -14,6 +14,7 @@ public class EventManager : MonoBehaviour
     public event Action<int> OnAmmoCountUpdated;
 
     public GameManager GameManager { get; private set; }
+    public AudioManager AudioManager { get; private set; }
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class EventManager : MonoBehaviour
     public void TriggerStartGame()
     {
         OnStartGame?.Invoke();
+        AudioManager.PlayGameStart();
     }
 
     /// <summary>
@@ -59,6 +61,14 @@ public class EventManager : MonoBehaviour
         GameManager = gameManager;
     }
     /// <summary>
+    /// Sets the AudioManager instance for the EventManager.
+    /// </summary>
+    /// <param name="audioManager"></param>
+    public void SetAudioManager(AudioManager audioManager)
+    {
+        AudioManager = audioManager;
+    }
+    /// <summary>
     /// Updates the score and triggers the OnScoreUpdated event.
     /// </summary>
     public void UpdateScore()
@@ -79,6 +89,7 @@ public class EventManager : MonoBehaviour
     public void ResetGame()
     {
         OnResetGame?.Invoke();
+        AudioManager.PlayGameStart();
     }
     /// <summary>
     /// Checks if the game has ended due to running out of ammo.
@@ -87,6 +98,7 @@ public class EventManager : MonoBehaviour
     {
         if (GameManager.GetAmmoCount() <= 0)
         {
+            AudioManager.PlayGameOver();
             ShowRetry?.Invoke();
         }
     }

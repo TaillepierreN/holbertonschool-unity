@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public void IncrementScore()
     {
         _score += 10;
+        EventManager.Instance.AudioManager.PlayTargetHit();
         EventManager.Instance.UpdateScore();
     }
 
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     {
         Debugger.ShowText("Ammo count before decrement: " + _ammoCount);
         _ammoCount--;
+        EventManager.Instance.AudioManager.PlayAmmoLaunched();
         Debugger.AppendText("Ammo count decremented: " + _ammoCount);
         EventManager.Instance.UpdateAmmoCount(_ammoCount);
         //Debugger.ShowText("Ammo count decremented: " + _ammoCount);
@@ -64,15 +66,27 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void CheckHighScore()
     {
-        if (_score > PlayerPrefs.GetInt("HighScore", 0))
+        int high1 = PlayerPrefs.GetInt("HighScore1", 0);
+        int high2 = PlayerPrefs.GetInt("HighScore2", 0);
+        int high3 = PlayerPrefs.GetInt("HighScore3", 0);
+        switch (_score)
         {
-            PlayerPrefs.SetInt("HighScore", _score);
-            Debugger.ShowText("New High Score: " + _score);
+            case int n when n > high1:
+                PlayerPrefs.SetInt("HighScore3", high2);
+                PlayerPrefs.SetInt("HighScore2", high1);
+                PlayerPrefs.SetInt("HighScore1", _score);
+                break;
+            case int n when n > high2:
+                PlayerPrefs.SetInt("HighScore3", high2);
+                PlayerPrefs.SetInt("HighScore2", _score);
+                break;
+            case int n when n > high3:
+                PlayerPrefs.SetInt("HighScore3", _score);
+                break;
+            default:
+                break;
         }
-        else
-        {
-            Debugger.ShowText("Current Score: " + _score + ", High Score: " + PlayerPrefs.GetInt("HighScore", 0));
-        }
+        PlayerPrefs.Save();
     }
     #endregion
     #region Getters
@@ -110,7 +124,8 @@ public class GameManager : MonoBehaviour
     public void ReloadGame()
     {
         ARPlaneSelector.SelectedPlane = null;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Reloading.SceneToLoad = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("Reload");
     }
     /// <summary>
     /// Quits the game application.

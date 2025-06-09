@@ -89,6 +89,7 @@ public class SlingshotAmmo : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Ground"))
         {
+            EventManager.Instance.AudioManager.PlayTargetMiss();
             ResetAmmo();
         }
     }
@@ -222,6 +223,7 @@ public class SlingshotAmmo : MonoBehaviour
     {
         if (transform.position.y < _resetY)
         {
+            EventManager.Instance.AudioManager.PlayTargetMiss();
             ResetAmmo();
         }
     }
