@@ -15,12 +15,15 @@ public class GameManager : MonoBehaviour
         EventManager.Instance.OnStartGame += SpawnAmmo;
         EventManager.Instance.AmmoLaunched += DecrementAmmoCount;
         EventManager.Instance.Scored += IncrementScore;
+        EventManager.Instance.ShowRetry += CheckHighScore;
     }
     void OnDestroy()
     {
         EventManager.Instance.OnStartGame -= SpawnAmmo;
         EventManager.Instance.AmmoLaunched -= DecrementAmmoCount;
         EventManager.Instance.Scored -= IncrementScore;
+        EventManager.Instance.ShowRetry -= CheckHighScore;
+
     }
 
     #region Actions
@@ -54,6 +57,22 @@ public class GameManager : MonoBehaviour
         Debugger.AppendText("Ammo count decremented: " + _ammoCount);
         EventManager.Instance.UpdateAmmoCount(_ammoCount);
         //Debugger.ShowText("Ammo count decremented: " + _ammoCount);
+    }
+
+    /// <summary>
+    /// Checks if the current score is higher than the stored high score in PlayerPrefs and updates it if necessary.
+    /// </summary>
+    private void CheckHighScore()
+    {
+        if (_score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", _score);
+            Debugger.ShowText("New High Score: " + _score);
+        }
+        else
+        {
+            Debugger.ShowText("Current Score: " + _score + ", High Score: " + PlayerPrefs.GetInt("HighScore", 0));
+        }
     }
     #endregion
     #region Getters

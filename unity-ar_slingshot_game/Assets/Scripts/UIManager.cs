@@ -4,6 +4,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text _scoreTxt;
+    [SerializeField] private TMP_Text _highscoreTxt;
     [SerializeField] private GameObject _retryButton;
     [SerializeField] private AmmoSelected[] _ammoCounterTokens;
 
@@ -70,7 +71,7 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Resets the game by resetting the ammo counter, updating the score text, and hiding the retry button.
     /// </summary>
-    public void ResetGame()
+    private void ResetGame()
     {
         ResetAmmoCounter();
         UpdateScoreText();
@@ -80,7 +81,7 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Resets the ammo counter by unselecting all ammo tokens and resetting their used state.
     /// </summary>
-    public void ResetAmmoCounter()
+    private void ResetAmmoCounter()
     {
         foreach (var ammoToken in _ammoCounterTokens)
         {
@@ -93,8 +94,20 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Displays the retry button in the UI, allowing the player to restart the game.
     /// </summary>
-    public void ShowRetryButton()
+    private void ShowRetryButton()
     {
         _retryButton.SetActive(true);
+    }
+    /// <summary>
+    /// Sets the high score text in the UI to reflect the provided high score value.
+    /// </summary>
+    /// <param name="highScore"></param>
+    public void SetHighScore()
+    {
+        if (_highscoreTxt != null)
+        {
+            int highScore = PlayerPrefs.GetInt("HighScore", 0);
+            _highscoreTxt.text = $"{highScore}";
+        }
     }
 }
