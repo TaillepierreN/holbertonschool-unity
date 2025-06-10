@@ -35,6 +35,7 @@ public class EventManager : MonoBehaviour
     /// </summary>
     public void TriggerStartGame()
     {
+        Debugger.ShowText("Game started");
         OnStartGame?.Invoke();
         AudioManager.PlayGameStart();
     }

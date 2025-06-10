@@ -39,7 +39,7 @@ public class SlingshotAmmo : MonoBehaviour
         }
         if (_arCamera == null)
         {
-            Debugger.ShowText("No AR Camera found, using main camera instead.");
+            //Debugger.ShowText("No AR Camera found, using main camera instead.");
             _arCamera = Camera.main;
         }
         if (_arRaycastManager == null)
@@ -47,7 +47,7 @@ public class SlingshotAmmo : MonoBehaviour
             _arRaycastManager = FindFirstObjectByType<ARRaycastManager>();
             if (_arRaycastManager == null)
             {
-                Debugger.ShowText("No AR Raycast Manager found, disabling slingshot ammo.");
+                //Debugger.ShowText("No AR Raycast Manager found, disabling slingshot ammo.");
                 enabled = false;
                 return;
             }
@@ -55,11 +55,11 @@ public class SlingshotAmmo : MonoBehaviour
 
         if (_lineRenderer == null)
         {
-            Debugger.ShowText("No Line Renderer found, searching for it.");
+            //Debugger.ShowText("No Line Renderer found, searching for it.");
             _lineRenderer = GetComponent<LineRenderer>();
             if (_lineRenderer == null)
             {
-                Debugger.ShowText("No Line Renderer found, disabling.");
+                //Debugger.ShowText("No Line Renderer found, disabling.");
                 enabled = false;
                 return;
             }

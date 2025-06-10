@@ -27,17 +27,7 @@ public class ARPlaneSelector : MonoBehaviour
     {
         EnhancedTouchSupport.Enable();
     }
-    void Start()
-    {
-        _isPlaneSelected = false;
-        SelectedPlane = null;
-        if (_startButton.activeSelf)
-            _startButton.SetActive(false);
-        if (!_planeManager.enabled)
-            _planeSelectionUI.SetActive(true);
-        if (!_planeSelectionUI.activeSelf)
-            _planeSelectionUI.SetActive(true);
-    }
+
     void OnDisable()
     {
         EnhancedTouchSupport.Disable();
@@ -88,16 +78,20 @@ public class ARPlaneSelector : MonoBehaviour
                 }
 
                 if (_startButton != null)
+                {
                     _startButton.SetActive(true);
+                    //Debugger.ShowText("set active start button");
+                }
                 _planeSelectionUI.SetActive(false);
             }
         }
     }
     public void DeselectPlane()
     {
-            _planeManager.enabled = true;
-            SelectedPlane = null;
-            _isPlaneSelected = false;
+        _planeManager.enabled = true;
+        SelectedPlane = null;
+        _isPlaneSelected = false;
+        _hits.Clear();
 
     }
 

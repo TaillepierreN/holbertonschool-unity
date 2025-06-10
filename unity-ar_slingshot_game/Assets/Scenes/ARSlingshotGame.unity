@@ -1889,6 +1889,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1045241232}
   - component: {fileID: 1045241231}
+  - component: {fileID: 1045241233}
   m_Layer: 0
   m_Name: EventManager
   m_TagString: Untagged
@@ -1923,6 +1924,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1045241233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045241230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 628218f432300ca4b841db80f587c962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugText: {fileID: 2062667416}
+  isDebugEnabled: 0
 --- !u!1001 &1046721037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2040,7 +2055,7 @@ PrefabInstance:
     - target: {fileID: 3546556248467946166, guid: 7821392e2fdf506478430843f2a3a288, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1045241231}
+      objectReference: {fileID: 1539811202}
     - target: {fileID: 3546556248467946166, guid: 7821392e2fdf506478430843f2a3a288, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -2071,7 +2086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3546556248467946166, guid: 7821392e2fdf506478430843f2a3a288, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TriggerStartGame
+      value: StartGame
       objectReference: {fileID: 0}
     - target: {fileID: 3546556248467946166, guid: 7821392e2fdf506478430843f2a3a288, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2087,7 +2102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3546556248467946166, guid: 7821392e2fdf506478430843f2a3a288, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: EventManager, Assembly-CSharp
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3546556248467946166, guid: 7821392e2fdf506478430843f2a3a288, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -3664,7 +3679,6 @@ GameObject:
   - component: {fileID: 1837009629}
   - component: {fileID: 1837009628}
   - component: {fileID: 1837009627}
-  - component: {fileID: 1837009631}
   - component: {fileID: 1837009632}
   m_Layer: 5
   m_Name: Canvas
@@ -3760,20 +3774,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1837009631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837009626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 628218f432300ca4b841db80f587c962, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugText: {fileID: 2062667416}
-  isDebugEnabled: 0
 --- !u!114 &1837009632
 MonoBehaviour:
   m_ObjectHideFlags: 0

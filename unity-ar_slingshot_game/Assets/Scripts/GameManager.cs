@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0.5f);
         Vector3 spawnWorldPos = Camera.main.ScreenToWorldPoint(screenCenter);
         GameObject ammo = Instantiate(_ammoPrefab, spawnWorldPos, Quaternion.identity);
-        //Debugger.ShowText("Ammo spawned at: " + Camera.main.transform.position);
+        Debugger.ShowText("Ammo spawned at: " + Camera.main.transform.position);
         ammo.GetComponent<SlingshotAmmo>().Spawn();
     }
     /// <summary>
@@ -53,10 +53,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void DecrementAmmoCount()
     {
-        Debugger.ShowText("Ammo count before decrement: " + _ammoCount);
+        //Debugger.ShowText("Ammo count before decrement: " + _ammoCount);
         _ammoCount--;
         EventManager.Instance.AudioManager.PlayAmmoLaunched();
-        Debugger.AppendText("Ammo count decremented: " + _ammoCount);
+        //Debugger.AppendText("Ammo count decremented: " + _ammoCount);
         EventManager.Instance.UpdateAmmoCount(_ammoCount);
         //Debugger.ShowText("Ammo count decremented: " + _ammoCount);
     }
@@ -137,4 +137,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
     #endregion
+
+    public void StartGame()
+    {
+        EventManager.Instance.TriggerStartGame();
+    }
 }
