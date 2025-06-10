@@ -6,14 +6,21 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text _scoreTxt;
     [SerializeField] private TMP_Text _highscoreTxt;
     [SerializeField] private GameObject _retryPanel;
+    [SerializeField] private GameObject _gameUI;
+    
     [SerializeField] private AmmoSelected[] _ammoCounterTokens;
 
     private void Start()
     {
+        if (_retryPanel.activeSelf)
+            _retryPanel.SetActive(false);
+        if (_gameUI.activeSelf)
+            _gameUI.SetActive(false);
         EventManager.Instance.OnScoreUpdated += UpdateScoreText;
         EventManager.Instance.OnAmmoCountUpdated += UpdateAmmoCounter;
         EventManager.Instance.OnResetGame += ResetGame;
         EventManager.Instance.ShowRetry += ShowRetryButton;
+        SetHighScore();
 
     }
 
@@ -97,17 +104,19 @@ public class UIManager : MonoBehaviour
     private void ShowRetryButton()
     {
         _retryPanel.SetActive(true);
+        SetHighScore();
     }
+
     /// <summary>
     /// Sets the high score text in the UI to reflect the provided high score value.
     /// </summary>
-    /// <param name="highScore"></param>
     public void SetHighScore()
     {
         if (_highscoreTxt != null)
         {
-            int highScore = PlayerPrefs.GetInt("HighScore", 0);
+            int highScore = PlayerPrefs.GetInt("HighScore1", 0);
             _highscoreTxt.text = $"{highScore}";
         }
     }
+
 }

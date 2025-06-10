@@ -9,6 +9,7 @@ public class EventManager : MonoBehaviour
     public event Action Scored;
     public event Action OnScoreUpdated;
     public event Action ShowRetry;
+    public event Action RefreshHighscore;
     public event Action OnResetGame;
 
     public event Action<int> OnAmmoCountUpdated;
@@ -82,6 +83,13 @@ public class EventManager : MonoBehaviour
     public void UpdateAmmoCount(int ammoNbr)
     {
         OnAmmoCountUpdated?.Invoke(ammoNbr);
+    }
+    /// <summary>
+    /// Triggers the ShowRetry event to display the retry UI when the game ends.
+    /// </summary>
+    public void TriggerRefreshHighScore()
+    {
+        RefreshHighscore?.Invoke();
     }
     /// <summary>
     /// Triggers the OnResetGame event to display the retry UI when the game ends.

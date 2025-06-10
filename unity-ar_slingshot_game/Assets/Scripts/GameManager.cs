@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
                 break;
         }
         PlayerPrefs.Save();
+        EventManager.Instance.TriggerRefreshHighScore();
+
     }
     #endregion
     #region Getters
