@@ -26,6 +26,12 @@ public class WebXRMovementManager : MonoBehaviour
     private float targetYaw = 0f;
     private float currentYaw = 0f;
 
+    [Header("Ball steering")]
+    private bool isSteeringBall = false;
+    private Rigidbody currentBall;
+    public float ballSteerForce = 10f;
+
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -72,15 +78,39 @@ public class WebXRMovementManager : MonoBehaviour
         cameraHolder.localPosition = localPos;
 
         // ------------------- MOVEMENT -------------------
-        Vector3 input = new Vector3(
-            Keyboard.current.aKey.isPressed ? -1 : Keyboard.current.dKey.isPressed ? 1 : 0,
-            0,
-            Keyboard.current.sKey.isPressed ? -1 : Keyboard.current.wKey.isPressed ? 1 : 0
-        );
+        if (!isSteeringBall)
+        {
+            Vector3 input = new Vector3(
+                Keyboard.current.aKey.isPressed ? -1 : Keyboard.current.dKey.isPressed ? 1 : 0,
+                0,
+                Keyboard.current.sKey.isPressed ? -1 : Keyboard.current.wKey.isPressed ? 1 : 0
+            );
 
-        Vector3 direction = movementReference.forward * input.z + movementReference.right * input.x;
-        direction.y = 0f;
+            Vector3 direction = movementReference.forward * input.z + movementReference.right * input.x;
+            direction.y = 0f;
 
-        controller.Move(direction.normalized * moveSpeed * Time.deltaTime);
+            controller.Move(direction.normalized * moveSpeed * Time.deltaTime);
+        }
+        else if (currentBall != null)
+        {
+            float steer = 0f;
+            if (Keyboard.current.leftArrowKey.isPressed) steer = -1f;
+            if (Keyboard.current.rightArrowKey.isPressed) steer = 1f;
+
+            Vector3 lateral = movementReference.right * steer * ballSteerForce;
+            currentBall.AddForce(lateral, ForceMode.Acceleration);
+        }
     }
+
+    public void EnterBallSteering(Rigidbody ballRb)
+    {
+        isSteeringBall = true;
+        currentBall = ballRb;
+    }
+    public void ExitBallSteering()
+    {
+        isSteeringBall = false;
+        currentBall = null;
+    }
+
 }
