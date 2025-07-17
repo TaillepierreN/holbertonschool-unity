@@ -40,13 +40,18 @@ public class GrabbableBall : MonoBehaviour
     }
     public void StartResetPosition()
     {
-        StartCoroutine(ResetPosition());
+        StartCoroutine(ResetPositionDelayed());
     }
-    private IEnumerator ResetPosition()
-    {
-        yield return new WaitForSeconds(delay);
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        transform.localPosition = originalPosition;
-    }
+    private IEnumerator ResetPositionDelayed()
+	{
+		yield return new WaitForSeconds(delay);
+		ResetPosition();
+	}
+
+	public void ResetPosition()
+	{
+		rb.linearVelocity = Vector3.zero;
+		rb.angularVelocity = Vector3.zero;
+		transform.localPosition = originalPosition;
+	}
 }

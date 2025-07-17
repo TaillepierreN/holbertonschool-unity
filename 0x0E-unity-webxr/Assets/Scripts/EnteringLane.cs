@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class EnteringLane : MonoBehaviour
 {
-    public WebXRMovementManager movementManager;
-    public CameraSwitch cameraSwitch;
+    public GameManager gameManager;
     public TriggerType triggerType;
     public enum TriggerType { Enter, Exit }
 
@@ -14,13 +13,11 @@ public class EnteringLane : MonoBehaviour
             Rigidbody ballRb = other.attachedRigidbody;
             if (triggerType == TriggerType.Enter)
             {
-                movementManager.EnterBallSteering(ballRb);
-                cameraSwitch.SwitchCam(true);
+                gameManager.EnteringLane(ballRb);
             }
             else if (triggerType == TriggerType.Exit)
             {
-                movementManager.ExitBallSteering();
-                cameraSwitch.SwitchCam(false);
+                gameManager.ExitingLane();
                 other.gameObject.GetComponent<GrabbableBall>().StartResetPosition();
             }
 
