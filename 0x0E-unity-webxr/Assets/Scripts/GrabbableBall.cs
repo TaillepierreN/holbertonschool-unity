@@ -5,9 +5,17 @@ public class GrabbableBall : MonoBehaviour
 {
     private bool isGrabbed = false;
     private Transform grabber;
-    private Vector3 originalPosition;
     private Rigidbody rb;
+    private Vector3 originalPosition;
     private float delay = 4f;
+
+    public float autoResetDelay = 8f;
+    public float stillVelocityThreshold = 0.05f;
+
+    private float stillTimer = 0f;
+    public GameManager gameManager;
+    private bool hasTriggeredExit = false;
+    private bool inPlay = false;
 
     void Start()
     {
@@ -21,6 +29,23 @@ public class GrabbableBall : MonoBehaviour
         {
             transform.position = grabber.position;
             transform.rotation = grabber.rotation;
+            return;
+        }
+        if (rb.linearVelocity.magnitude < stillVelocityThreshold && inPlay)
+        {
+            stillTimer += Time.deltaTime;
+            if (stillTimer >= autoResetDelay && !hasTriggeredExit)
+            {
+                Debug.Log("Ball stopped too long. Auto-resetting...");
+                gameManager?.ExitingLane();
+                ResetPosition();
+                hasTriggeredExit = true;
+                stillTimer = 0f;
+            }
+        }
+        else
+        {
+            stillTimer = 0f;
         }
     }
 
@@ -29,6 +54,7 @@ public class GrabbableBall : MonoBehaviour
         isGrabbed = true;
         grabber = hand;
         rb.isKinematic = true;
+        hasTriggeredExit = false;
     }
 
     public void Release(Vector3 throwVelocity)
@@ -43,15 +69,22 @@ public class GrabbableBall : MonoBehaviour
         StartCoroutine(ResetPositionDelayed());
     }
     private IEnumerator ResetPositionDelayed()
-	{
-		yield return new WaitForSeconds(delay);
-		ResetPosition();
-	}
+    {
+        yield return new WaitForSeconds(delay);
+        ResetPosition();
+    }
 
-	public void ResetPosition()
-	{
-		rb.linearVelocity = Vector3.zero;
-		rb.angularVelocity = Vector3.zero;
-		transform.localPosition = originalPosition;
-	}
+    public void ResetPosition()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        transform.localPosition = originalPosition;
+        hasTriggeredExit = false;
+        SetInPlay(false);
+    }
+    public void SetInPlay(bool value)
+    {
+        inPlay = value;
+        Debug.Log("Ball in play: " + inPlay);
+    }
 }

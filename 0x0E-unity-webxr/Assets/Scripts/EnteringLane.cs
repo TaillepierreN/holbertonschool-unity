@@ -10,15 +10,18 @@ public class EnteringLane : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Interactable"))
         {
+            GrabbableBall ballScript = other.gameObject.GetComponent<GrabbableBall>();
             Rigidbody ballRb = other.attachedRigidbody;
             if (triggerType == TriggerType.Enter)
             {
+                ballScript.SetInPlay(true);
                 gameManager.EnteringLane(ballRb);
             }
             else if (triggerType == TriggerType.Exit)
             {
                 gameManager.ExitingLane();
-                other.gameObject.GetComponent<GrabbableBall>().StartResetPosition();
+                ballScript.SetInPlay(false);
+                ballScript.StartResetPosition();
             }
 
         }
