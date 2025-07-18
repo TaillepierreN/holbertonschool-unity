@@ -60,9 +60,23 @@ public class GrabbableBall : MonoBehaviour
     public void Release(Vector3 throwVelocity)
     {
         isGrabbed = false;
-        grabber = null;
         rb.isKinematic = false;
+        grabber = null;
+
+        StartCoroutine(ApplyImpulseNextFrame(throwVelocity));
+    }
+
+    private IEnumerator ApplyImpulseNextFrame(Vector3 throwVelocity)
+    {
+        yield return new WaitForFixedUpdate();
+
+        Vector3 direction = transform.forward;
+
+        if (throwVelocity.magnitude < 0.2f)
+            throwVelocity = direction * 20f;
+
         rb.linearVelocity = throwVelocity;
+        rb.AddForce(direction * 30f, ForceMode.Impulse);
     }
     public void StartResetPosition()
     {
